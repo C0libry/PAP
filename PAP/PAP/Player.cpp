@@ -66,6 +66,8 @@ void Player::control(Event& event)
 
 	if (dx == 0)
 		newState = STAND;
+	if (hp <= 0)
+		newState = DEATH;
 }
 
 Player::Player(const Objects& obj, const IntRect& rect, const Vector2f& pos) : Entity(obj, rect, pos)
@@ -107,7 +109,13 @@ void Player::playerAnimator()
 
 void Player::render(RenderWindow& window)
 {
-	drowBorders(window);
+	//drowRect(window, attackHitBox, Color::Blue);
+	//drowRect(window, hitBox, Color::Blue);
+	drowRect(window, borderBottom, Color::Magenta);
+	drowRect(window, borderRight, Color::Yellow);
+	drowRect(window, borderLeft, Color::Cyan);
+	drowRect(window, borderTop, Color::Red);
+
 	window.draw(this->sprite);
 }
 
@@ -137,6 +145,11 @@ void Player::eventUpdate(Event& event)
 		}
 	}*/
 }
+bool Player::isLife()
+{
+	return life;
+}
+
 /*
 void Player::playerState()
 {

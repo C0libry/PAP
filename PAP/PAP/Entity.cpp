@@ -92,25 +92,34 @@ void Entity::mapCollision()
 	isLeftSideCollide = leftSideCollide;
 }
 
-void Entity::drowBorders(RenderWindow& window)
+//Temp fantion
+void Entity::drowRect(RenderWindow& window, FloatRect rect, Color c)
 {
-	RectangleShape rectBottom(Vector2f(borderBottom.width, borderBottom.height));
-	RectangleShape rectRight(Vector2f(borderRight.width, borderRight.height));
-	RectangleShape rectLeft(Vector2f(borderLeft.width, borderLeft.height));
-	RectangleShape rectTop(Vector2f(borderTop.width, borderTop.height));
+	RectangleShape Rect(Vector2f(rect.width, rect.height));
 	//ectangleShape rectbot;
-	rectBottom.setFillColor(Color::Magenta);
-	rectRight.setFillColor(Color::Yellow);
-	rectLeft.setFillColor(Color::Cyan);
-	rectTop.setFillColor(Color::Red);
+	Rect.setFillColor(c);
 	//rectbot.setTextureRect(IntRect(bottom));
-	rectBottom.setPosition(borderBottom.left, borderBottom.top);
-	rectRight.setPosition(borderRight.left, borderRight.top);
-	rectLeft.setPosition(borderLeft.left, borderLeft.top);
-	rectTop.setPosition(borderTop.left, borderTop.top);
+	Rect.setPosition(rect.left, rect.top);
 
-	window.draw(rectBottom);
-	window.draw(rectRight);
-	window.draw(rectLeft);
-	window.draw(rectTop);
+	window.draw(Rect);
+}
+
+int Entity::gerStrength()
+{
+	return this->strength;
+}
+
+int Entity::getHP()
+{
+	return this->hp;
+}
+
+void Entity::setHP(int HP)
+{
+	hp = HP;
+}
+
+const FloatRect Entity::getAttackHitBox()
+{
+	return hitBox;
 }

@@ -48,7 +48,6 @@ void clickWithCooldown(Event& event, int& count, bool& KeyPressed, Int64& allTim
 int main()
 {
 	GameUpdater gameUpdater;
-	GameUpdater::loadGame();
 
 	RenderWindow window(sf::VideoMode(960, 540), "Platformer");
 	//RenderWindow window(sf::VideoMode(960, 540), "Platformer", Style::Fullscreen);
@@ -61,7 +60,7 @@ int main()
 	while (window.isOpen())
 	{
 		//Base::setDeltaTime(deltaClock.getElapsedTime().asMicroseconds() / 1000.f);
-		cout << "DeltaTime = " << Base::getDeltaTime() << endl;
+		//cout << "DeltaTime = " << Base::getDeltaTime() << endl;
 
 		Base::setDeltaTime(deltaClock.restart().asMicroseconds() / 1000.f);
 
@@ -72,7 +71,8 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			gameUpdater.eventUpdate(event);
+			if (!gameUpdater.eventUpdate(event, window))
+				window.close();
 			//clickWithCooldown(event, count, KeyPressed, allTime, (3 * 1000 * 1000));
 		}
 		gameUpdater.update(event);

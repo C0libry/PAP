@@ -17,4 +17,3 @@ public:
 	//Функция которая возвращает текстуру по имени объекта
 	static Texture& getTexture(const Objects& obj);
 };
-

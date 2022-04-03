@@ -9,7 +9,6 @@ protected:
 	static float deltaTime;
 	Sprite sprite;
 	FloatRect hitBox;
-	FloatRect attackHitBox;
 	bool isEndOfAnimation;
 	//Objects type;
 	Base(const Objects& obj);

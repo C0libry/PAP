@@ -18,6 +18,7 @@ public:
 	void render(RenderWindow& window) override;
 	void update(Event& event) override;
 	void eventUpdate(Event& event) override;
+	bool isLife();
 };
 
 /*

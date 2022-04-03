@@ -42,7 +42,6 @@ void Slime::attack()
 {
 	newState = ATTACK;
 	isAttack = true;
-	attackHitBox = hitBox;
 }
 
 void Slime::slimeAnimator()
@@ -84,7 +83,13 @@ Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Playe
 
 void Slime::render(RenderWindow& window)
 {
-	drowBorders(window);
+	//drowRect(window, hitBox, Color::Blue);
+	//drowRect(window, attackHitBox, Color::Blue);
+	drowRect(window, borderBottom, Color::Magenta);
+	drowRect(window, borderRight, Color::Yellow);
+	drowRect(window, borderLeft, Color::Cyan);
+	drowRect(window, borderTop, Color::Red);
+
 	window.draw(this->sprite);
 }
 void Slime::update(Event& event)
@@ -94,6 +99,7 @@ void Slime::update(Event& event)
 	hitBox.height -= (13 + 2);
 	hitBox.left += 3;
 	hitBox.width -= (3 + 3);
+	attackHitBox = hitBox;
 	mapCollision();
 	control(event);
 	fall();

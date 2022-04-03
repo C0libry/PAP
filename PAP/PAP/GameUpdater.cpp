@@ -9,6 +9,14 @@ void GameUpdater::loadGame()
 {
 	Loader::startLoad();
 	Map::load();
+	//hero.loadEnemys(slime);
+}
+
+//void GameUpdater::loadEnemys()
+
+GameUpdater::GameUpdater()
+{
+	GameUpdater::loadGame();
 }
 
 void GameUpdater::render(RenderWindow& window)
@@ -22,9 +30,16 @@ void GameUpdater::update(Event event)
 {
 	hero.update(event);
 	slime.update(event);
-	Camera::move(camera, hero.getSprite().getPosition());
+	cout << hero.getHP();
+	if (hero.getHitBox().intersects(slime.getAttackHitBox()))
+	{
+		hero.setHP(hero.getHP() - slime.gerStrength());
+	}
+	Camera::move(camera, Vector2f(hero.getHitBox().left + hero.getHitBox().width / 2, hero.getHitBox().top + hero.getHitBox().height / 2));
+	//Camera::move(camera, hero.getSprite().getPosition());
 }
-void GameUpdater::eventUpdate(Event& event)
+bool GameUpdater::eventUpdate(Event& event, RenderWindow& window)
 {
 	Camera::scrolle(camera, event);
+	return hero.isLife();
 }

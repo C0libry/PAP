@@ -19,6 +19,7 @@ protected:
 	float dx, dy, currentFrame;
 	int hp, strength;
 	State currentState, newState;
+	FloatRect attackHitBox;
 	FloatRect borderBottom;
 	FloatRect borderRight;
 	FloatRect borderLeft;
@@ -28,5 +29,10 @@ protected:
 	void fall();
 	void mapCollision();
 	//bool isCollide(FloatRect rect1, FloatRect rect2);
-	void drowBorders(RenderWindow& window);
+	void drowRect(RenderWindow& window, FloatRect rect, Color c);
+public:
+	int gerStrength();
+	int getHP();
+	void setHP(int HP);
+	const FloatRect getAttackHitBox();
 };
