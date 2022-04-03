@@ -11,6 +11,7 @@ protected:
 	bool spacePressed;
 	void control(Event& event);
 	void playerAnimator();
+	void enemyCollision();
 	//void playerState();
 public:
 	Player(const Objects& obj, const IntRect& rect, const Vector2f& pos);

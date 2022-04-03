@@ -7,8 +7,8 @@
 class Slime: public Enemy
 {
 protected:
-	Player* player;
 	void control(Event& event);
+	void attack();
 	void slimeAnimator();
 public:
 	Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p);

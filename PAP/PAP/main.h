@@ -5,6 +5,7 @@
 
 #include "Include.h"
 
+#include "GameUpdater.h"
 #include "Utils.h"
 #include "Base.h"
 #include "Entity.h"

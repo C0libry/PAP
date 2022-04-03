@@ -10,6 +10,7 @@ Entity::Entity(const Objects& obj, const IntRect& rect, const Vector2f& pos) : B
 	isCeilingCollide = false;
 	isRightSideCollide = false;
 	isLeftSideCollide = false;
+	isAttack = false;
 	currentFrame = 0;
 	currentState = STAND;
 	lookLeft = true;
@@ -90,9 +91,6 @@ void Entity::mapCollision()
 	isRightSideCollide = rightSideCollide;
 	isLeftSideCollide = leftSideCollide;
 }
-
-void Entity::enemyCollision()
-{}
 
 void Entity::drowBorders(RenderWindow& window)
 {

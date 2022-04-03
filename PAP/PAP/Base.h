@@ -8,6 +8,9 @@ class Base
 protected:
 	static float deltaTime;
 	Sprite sprite;
+	FloatRect hitBox;
+	FloatRect attackHitBox;
+	bool isEndOfAnimation;
 	//Objects type;
 	Base(const Objects& obj);
 	virtual ~Base() = 0;
@@ -31,7 +34,6 @@ public:
 	//static void setDeltaTime(float DeltaTime);
 
 	Sprite& getSprite();
-	FloatRect hitBox;
 	static float& getDeltaTime();
 	static void setDeltaTime(float DeltaTime);
 	static float distance(Vector2f point1, Vector2f point2);

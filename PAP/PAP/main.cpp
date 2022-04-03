@@ -47,20 +47,11 @@ void clickWithCooldown(Event& event, int& count, bool& KeyPressed, Int64& allTim
 
 int main()
 {
-	Loader::startLoad();
-
-	Map::load();
-
-	//Tile tile(box, IntRect(0, 0, 16, 16), Vector2f(300, 300));
+	GameUpdater gameUpdater;
+	GameUpdater::loadGame();
 
 	RenderWindow window(sf::VideoMode(960, 540), "Platformer");
 	//RenderWindow window(sf::VideoMode(960, 540), "Platformer", Style::Fullscreen);
-
-	View camera = Camera::load();
-
-	Player hero(PLAYER, IntRect(0, 0, 50, 37), Vector2f(0, 0));
-	cout << &hero << " ";
-	Slime slime(Objects::SLIME, IntRect(0, 0, 32, 25), Vector2f(500, 300), hero);
 
 	Clock deltaClock;
 
@@ -81,22 +72,12 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			Camera::scrolle(camera, event);
-
-			//hero.eventUpdate(event, time);
+			gameUpdater.eventUpdate(event);
 			//clickWithCooldown(event, count, KeyPressed, allTime, (3 * 1000 * 1000));
 		}
-		hero.update(event);
-		slime.update(event);
-
+		gameUpdater.update(event);
 		window.clear();
-
-		Map::render(window);
-		slime.render(window);
-		hero.render(window);
-		Camera::move(camera, hero.getSprite().getPosition());
-		Camera::render(camera, window);
-
+		gameUpdater.render(window);
 		window.display();
 	}
 

@@ -120,6 +120,7 @@ void Player::update(Event& event)
 	hitBox.width -= (18 + 16);
 	mapCollision();
 	control(event);
+	//enemyCollision();
 	fall();
 	playerAnimator();
 	dx = 0;

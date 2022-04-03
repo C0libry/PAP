@@ -4,7 +4,8 @@ void Slime::control(Event& event)
 {
 	//currentState = STAND;
 	newState = STAND;
-	if (distance(sprite.getPosition(), player->getPosition()) < 400)
+	float Distance = distance(sprite.getPosition(), player->getPosition());
+	if (Distance < 400 && Distance > 30)
 	{
 		if (player->getPosition().x < sprite.getPosition().x)
 		{
@@ -31,6 +32,17 @@ void Slime::control(Event& event)
 			}
 		}
 	}
+	else if (Distance < 30)
+	{
+		attack();
+	}
+}
+
+void Slime::attack()
+{
+	newState = ATTACK;
+	isAttack = true;
+	attackHitBox = hitBox;
 }
 
 void Slime::slimeAnimator()
@@ -39,13 +51,16 @@ void Slime::slimeAnimator()
 	{
 	case State::STAND:
 		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 0, 4, currentFrame);
+		isEndOfAnimation = false;
 		break;
 	case State::MOVE:
-		Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
+		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 4, 8, currentFrame);
 		break;
 	case State::JUMP:
 		break;
 	case State::ATTACK:
+		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
+		Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
 		break;
 	case State::CAST_SPELL:
 		break;
@@ -61,12 +76,10 @@ void Slime::slimeAnimator()
 	}
 }
 
-Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos)
+Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos, p)
 {
 	hp = 20;
 	strength = 3;
-	player = &p;
-	cout << &p << " " << player << endl;
 }
 
 void Slime::render(RenderWindow& window)

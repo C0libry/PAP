@@ -11,10 +11,11 @@ protected:
 	//Переменная которая отвечает за жизнь
 	bool life;
 	bool onGround;
-	bool isCeilingCollide = false;
-	bool isRightSideCollide = false;
-	bool isLeftSideCollide = false;
+	bool isCeilingCollide;
+	bool isRightSideCollide;
+	bool isLeftSideCollide;
 	bool lookLeft;
+	bool isAttack;
 	float dx, dy, currentFrame;
 	int hp, strength;
 	State currentState, newState;
@@ -26,6 +27,6 @@ protected:
 	Entity(const Objects& obj, const IntRect& rect, const Vector2f& pos);
 	void fall();
 	void mapCollision();
-	void enemyCollision();
+	//bool isCollide(FloatRect rect1, FloatRect rect2);
 	void drowBorders(RenderWindow& window);
 };

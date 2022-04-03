@@ -20,4 +20,5 @@ public:
 	static void load();
 	static void render(RenderWindow& window);
 	static const vector<Tile>& getMap();
+	//static void mapUpdate();
 };

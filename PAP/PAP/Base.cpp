@@ -8,6 +8,7 @@ float Base::deltaTime;
 Base::Base(const Objects& obj)
 {
 	sprite.setTexture(Loader::getTexture(obj));
+	isEndOfAnimation = false;
 }
 
 Sprite& Base::getSprite()
@@ -34,7 +35,8 @@ float Base::distance(Vector2f point1, Vector2f point2)
 
 Vector2f Base::getPosition()
 {
-	return sprite.getPosition();
+	return Vector2f(sprite.getPosition().x + abs(sprite.getTextureRect().width) / 2, sprite.getPosition().y + sprite.getTextureRect().height);
+	//return sprite.getPosition();
 }
 
 const FloatRect Base::getHitBox()
