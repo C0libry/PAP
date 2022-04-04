@@ -82,7 +82,6 @@ void Entity::mapCollision()
 			sprite.setPosition(sprite.getPosition().x + 0.01, sprite.getPosition().y);
 			leftSideCollide = true;
 		}
-		hitBox = sprite.getGlobalBounds();
 	}
 	cout << "\n";
 

@@ -33,15 +33,20 @@ float Base::distance(Vector2f point1, Vector2f point2)
 	return distance;
 }
 
-Vector2f Base::getPosition()
+Vector2f Base::getCentrePosition()
 {
-	return Vector2f(sprite.getPosition().x + abs(sprite.getTextureRect().width) / 2, sprite.getPosition().y + sprite.getTextureRect().height);
+	return Vector2f(sprite.getGlobalBounds().left + sprite.getGlobalBounds().width / 2, sprite.getGlobalBounds().top + sprite.getTextureRect().height / 2);
 	//return sprite.getPosition();
 }
 
 const FloatRect Base::getHitBox()
 {
 	return hitBox;
+}
+
+FloatRect Base::getSpriteGlobalBounds()
+{
+	return sprite.getGlobalBounds();
 }
 
 /*

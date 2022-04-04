@@ -36,8 +36,9 @@ public:
 	static float& getDeltaTime();
 	static void setDeltaTime(float DeltaTime);
 	static float distance(Vector2f point1, Vector2f point2);
-	Vector2f getPosition();
+	Vector2f getCentrePosition();
 	const FloatRect getHitBox();
+	FloatRect getSpriteGlobalBounds();
 	//void setHitBox(const FloatRect& hb);
 
 	virtual void render(RenderWindow& window) = 0;

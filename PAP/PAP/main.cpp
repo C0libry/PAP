@@ -47,8 +47,6 @@ void clickWithCooldown(Event& event, int& count, bool& KeyPressed, Int64& allTim
 
 int main()
 {
-	GameUpdater gameUpdater;
-
 	RenderWindow window(sf::VideoMode(960, 540), "Platformer");
 	//RenderWindow window(sf::VideoMode(960, 540), "Platformer", Style::Fullscreen);
 
@@ -71,13 +69,13 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 
-			if (!gameUpdater.eventUpdate(event, window))
+			if (!GameUpdater::getInstance().eventUpdate(event, window))
 				window.close();
 			//clickWithCooldown(event, count, KeyPressed, allTime, (3 * 1000 * 1000));
 		}
-		gameUpdater.update(event);
+		GameUpdater::getInstance().update(event);
 		window.clear();
-		gameUpdater.render(window);
+		GameUpdater::getInstance().render(window);
 		window.display();
 	}
 

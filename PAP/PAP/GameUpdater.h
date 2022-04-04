@@ -12,8 +12,11 @@ private:
 	//virtual ~GameUpdater() = 0;
 	//Base * hero;
 	//Base* slime;
-public:
 	GameUpdater();
+	GameUpdater(const GameUpdater&) = delete;
+	GameUpdater& operator=(GameUpdater const&);
+public:
+	static GameUpdater& getInstance();
 	static void loadGame();
 	void render(RenderWindow& window);
 	void update(Event event);

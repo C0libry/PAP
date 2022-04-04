@@ -4,10 +4,10 @@ void Slime::control(Event& event)
 {
 	//currentState = STAND;
 	newState = STAND;
-	float Distance = distance(sprite.getPosition(), player->getPosition());
-	if (Distance < 400 && Distance > 30)
+	float Distance = distance(getCentrePosition(), player->getCentrePosition());
+	if (Distance < 400 && Distance > 10)
 	{
-		if (player->getPosition().x < sprite.getPosition().x)
+		if (player->getCentrePosition().x < sprite.getPosition().x)
 		{
 			if (!isLeftSideCollide)
 			{
@@ -32,10 +32,12 @@ void Slime::control(Event& event)
 			}
 		}
 	}
-	else if (Distance < 30)
+	else if (Distance < 10)
 	{
 		attack();
 	}
+	if (hp <= 0)
+		newState = DEATH;
 }
 
 void Slime::attack()

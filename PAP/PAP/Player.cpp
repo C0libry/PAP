@@ -109,8 +109,8 @@ void Player::playerAnimator()
 
 void Player::render(RenderWindow& window)
 {
-	//drowRect(window, attackHitBox, Color::Blue);
 	//drowRect(window, hitBox, Color::Blue);
+	//drowRect(window, attackHitBox, Color::Blue);
 	drowRect(window, borderBottom, Color::Magenta);
 	drowRect(window, borderRight, Color::Yellow);
 	drowRect(window, borderLeft, Color::Cyan);

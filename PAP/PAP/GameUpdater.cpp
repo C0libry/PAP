@@ -14,6 +14,12 @@ void GameUpdater::loadGame()
 
 //void GameUpdater::loadEnemys()
 
+GameUpdater& GameUpdater::getInstance()
+{
+	static GameUpdater instance;
+	return instance;
+}
+
 GameUpdater::GameUpdater()
 {
 	GameUpdater::loadGame();
@@ -35,7 +41,7 @@ void GameUpdater::update(Event event)
 	{
 		hero.setHP(hero.getHP() - slime.gerStrength());
 	}
-	Camera::move(camera, Vector2f(hero.getHitBox().left + hero.getHitBox().width / 2, hero.getHitBox().top + hero.getHitBox().height / 2));
+	Camera::move(camera, hero.getCentrePosition());
 	//Camera::move(camera, hero.getSprite().getPosition());
 }
 bool GameUpdater::eventUpdate(Event& event, RenderWindow& window)
