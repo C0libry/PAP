@@ -19,6 +19,6 @@ public:
 	static GameUpdater& getInstance();
 	static void loadGame();
 	void render(RenderWindow& window);
-	void update(Event event);
-	bool eventUpdate(Event& event, RenderWindow& window);
+	bool update(Event event);
+	void eventUpdate(Event& event);
 };

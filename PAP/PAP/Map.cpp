@@ -4,7 +4,8 @@ vector<Tile> Map::map;
 
 vector<string> Map::loadFile()
 {
-	ifstream f("resources/map/map.txt");
+	//ifstream f("resources/map/map.txt");
+	ifstream f("resources/map/rooms/TestRoom.txt");
 	string s;
 	vector<string> str;
 
@@ -18,7 +19,37 @@ vector<string> Map::loadFile()
 void Map::mapCreature(vector<string>& str)
 {
 	int tileSize = 16;
+	int roomSize = 32;
+	int rooms = 2;
+	int roomLine = 0;
+	int roomRow = 0;
+	int line = 0;
+	int row = 0;
 
+	for (int k = 0; k < rooms; k++)
+	{
+		for (int n = 0; n < rooms; n++)
+		{
+			for (int i = 0; i < str.size(); i++)
+			{
+				for (int j = 0; j < str[i].size(); j++)
+				{
+					roomLine = k;
+					roomRow = n;
+					line = i;
+					row = j;
+					if (str[line][row] == '1')
+					{
+						line += roomLine * roomSize;
+						row += roomRow * roomSize * 2;
+						map.push_back(Tile(BOX, IntRect(0, 0, 16, 16), Vector2f(tileSize * row / 2, tileSize * line)));
+					}
+				}
+			}
+		}
+	}
+
+	/*
 	for (int line = 0; line < str.size(); line++)
 	{
 		for (int row = 0; row < str[line].size(); row++)
@@ -28,7 +59,7 @@ void Map::mapCreature(vector<string>& str)
 				map.push_back(Tile(BOX, IntRect(0, 0, 16, 16), Vector2f(tileSize * row / 2, tileSize * line)));
 			}
 		}
-	}
+	}*/
 }
 
 void Map::load()

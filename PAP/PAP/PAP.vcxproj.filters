@@ -16,6 +16,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="class.cd" />
+    <None Include="ClassDiagram.cd">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="tinyxml2.h">

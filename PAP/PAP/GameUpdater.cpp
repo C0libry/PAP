@@ -32,20 +32,20 @@ void GameUpdater::render(RenderWindow& window)
 	hero.render(window);
 	Camera::render(camera, window);
 }
-void GameUpdater::update(Event event)
+bool GameUpdater::update(Event event)
 {
 	hero.update(event);
 	slime.update(event);
-	cout << hero.getHP();
+	//cout << hero.getHP() << endl;
 	if (hero.getHitBox().intersects(slime.getAttackHitBox()))
 	{
 		hero.setHP(hero.getHP() - slime.gerStrength());
 	}
 	Camera::move(camera, hero.getCentrePosition());
 	//Camera::move(camera, hero.getSprite().getPosition());
+	return hero.isLife();
 }
-bool GameUpdater::eventUpdate(Event& event, RenderWindow& window)
+void GameUpdater::eventUpdate(Event& event)
 {
 	Camera::scrolle(camera, event);
-	return hero.isLife();
 }
