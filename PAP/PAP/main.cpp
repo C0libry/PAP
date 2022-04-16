@@ -52,17 +52,17 @@ int main()
 	//window.setMouseCursorVisible(false);
 	//Level level;
 	//level.LoadFromFile("map.tmx");
-	//Int64 frame_duration;
-	//Int64 time_to_sleep;
-	//float want_fps = 60.f;
+	Int64 frame_duration;
+	Int64 time_to_sleep;
+	float want_fps = 60.f;
 	Clock deltaClock;
-	//Base::setDeltaTime(10.f);
+	Base::setDeltaTime(10.f);
 	while (window.isOpen())
 	{
 		//Base::setDeltaTime(deltaClock.getElapsedTime().asMicroseconds() / 1000.f);
 		//cout << "DeltaTime = " << Base::getDeltaTime() << endl;
 		//deltaClock.restart();
-		Base::setDeltaTime(deltaClock.restart().asMicroseconds() / 1000.f);
+		//Base::setDeltaTime(deltaClock.restart().asMicroseconds() / 1000.f);
 		Event event;
 		while (window.pollEvent(event))
 		{
@@ -79,11 +79,11 @@ int main()
 		GameUpdater::getInstance().render(window);
 		window.display();
 
-		//frame_duration = deltaClock.restart().asMicroseconds();
-		//time_to_sleep = Int64(1000 * 1000.f / want_fps) - frame_duration;
-		//cout << (frame_duration - time_to_sleep) / (1000 * 1000.f) << endl;
-		//if (time_to_sleep > 0)
-		//	sleep(microseconds(time_to_sleep));
+		frame_duration = deltaClock.restart().asMicroseconds();
+		time_to_sleep = Int64(1000 * 1000.f / want_fps) - frame_duration;
+		//cout << 1/((frame_duration + time_to_sleep)/ (1000 * 1000.f)) << endl;
+		if (time_to_sleep > 0)
+			sleep(microseconds(time_to_sleep));
 	}
 	return 0;
 }

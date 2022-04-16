@@ -20,15 +20,16 @@ void Map::mapCreature(vector<string>& str)
 {
 	int tileSize = 16;
 	int roomSize = 32;
-	int rooms = 2;
+	int roomsInLine = 2;
+	int roomsInRow = 3;
 	int roomLine = 0;
 	int roomRow = 0;
 	int line = 0;
 	int row = 0;
 
-	for (int k = 0; k < rooms; k++)
+	for (int k = 0; k < roomsInRow; k++)
 	{
-		for (int n = 0; n < rooms; n++)
+		for (int n = 0; n < roomsInLine; n++)
 		{
 			for (int i = 0; i < str.size(); i++)
 			{
