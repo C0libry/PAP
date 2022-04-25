@@ -30,6 +30,7 @@ protected:
 	void mapCollision();
 	//bool isCollide(FloatRect rect1, FloatRect rect2);
 	void drowRect(RenderWindow& window, FloatRect rect, Color c);
+	void drowRays(RenderWindow& window);
 public:
 	int gerStrength();
 	int getHP();

@@ -64,22 +64,27 @@ void Entity::mapCollision()
 	{
 		if (borderTop.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
 		{
-			sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 0.01);
+			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 0.01);
+			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().height);
 			ceilingCollide = true;
 		}
 		if (borderBottom.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
 		{
-			sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.01);
+			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.01);
+			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y - sprite.getGlobalBounds().height + lineThickness + 0.1);
 			groundCollide = true;
 		}
 		if (borderRight.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
 		{
-			sprite.setPosition(sprite.getPosition().x - 0.01, sprite.getPosition().y);
+			//sprite.setPosition(sprite.getPosition().x - 0.01, sprite.getPosition().y);
+			//sprite.setPosition(map[i].getSprite().getPosition().x, sprite.getPosition().y);
 			rightSideCollide = true;
 		}
 		if (borderLeft.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
 		{
-			sprite.setPosition(sprite.getPosition().x + 0.01, sprite.getPosition().y);
+			//sprite.setPosition(map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().width, sprite.getPosition().y);
+			//sprite.setPosition(sprite.getPosition().x + 0.01, sprite.getPosition().y);
+			//sprite.setPosition(map[i].getSprite().getPosition().x + lineThickness - 0.1, sprite.getPosition().y);
 			leftSideCollide = true;
 		}
 	}
@@ -101,6 +106,15 @@ void Entity::drowRect(RenderWindow& window, FloatRect rect, Color c)
 	Rect.setPosition(rect.left, rect.top);
 
 	window.draw(Rect);
+}
+
+//Temp fantion
+void Entity::drowRays(RenderWindow& window)
+{
+	sf::RectangleShape line(sf::Vector2f(150, 10));
+	line.rotate(45);
+	line.setFillColor(Color::Red);
+	window.draw(line);
 }
 
 int Entity::gerStrength()
