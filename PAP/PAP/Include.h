@@ -3,6 +3,8 @@
 #ifndef INCLUDE_H
 #define INCLUDE_H
 
+#include "imgui/imgui.h"
+#include "imgui/imconfig-SFML.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
