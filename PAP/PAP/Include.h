@@ -40,12 +40,14 @@ enum State
 enum Objects
 {
 	PLAYER,
-	BOX,
-	SLIME
+	ASSETS,
+	SLIME,
+	BOX
 };
 
 //Глобальные статические константы
 static const String TILE_BOX = "resources/images/tile.png";
+static const String TILE_ASSETS = "resources/images/Assets.png";
 static const String HERO_NAME = "resources/images/adventurer-v1.5-Sheet.png";
 static const String SLIME_NAME = "resources/images/slime-Sheet.png";
 
