@@ -4,13 +4,31 @@
 #include "Base.h"
 #include "Utils.h"
 
+enum  TileType
+{
+	SOLID,
+	INVISIBLE,
+	INVISIBLE_NOT_SOLID,
+	COIN,
+	DECOR,
+	SPIKES,
+	LEVER,
+	DOOR
+};
+
 class Tile : public Base
 {
 protected:
-	bool solid;
+	//bool solid;
+	bool activated;
+	TileType currentType;
+	int number;
+
 public:
-	Tile(const Objects& obj, const IntRect& rect, const Vector2f& pos);
-	bool getSolid();
+	Tile(const Objects& obj, const TileType& type, const int Number, const IntRect& rect, const Vector2f& pos);
+	bool getState();
+	void setState(bool state);
+	TileType getCurrentType();
 	void render(RenderWindow& window) override;
 	void update(Event& event) override;
 	void eventUpdate(Event& event) override;

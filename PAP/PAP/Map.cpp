@@ -6,7 +6,8 @@ vector<string> Map::loadFile()
 {
 	//ifstream f("resources/map/map.txt");
 	//ifstream f("resources/map/rooms/TestRoom.txt");
-	ifstream f("resources/map/rooms/test lvl_Слой тайлов 1.csv");
+	//ifstream f("resources/map/rooms/test lvl_Слой тайлов 1.csv");
+	ifstream f("resources/map/rooms/room 2/lvl 2_physics.csv");
 	string s;
 	vector<string> str;
 
@@ -21,14 +22,14 @@ void Map::mapCreature(vector<string>& str)
 {
 	int tileSize = 16;
 	int roomSize = 32;
-	int roomsInLine = 1;
-	int roomsInRow = 1;
+	int roomsInLine = 3;
+	int roomsInRow = 2;
 	int roomLine = 0;
 	int roomRow = 0;
 	int line = 0;
 	int row = 0;
-	int Tline = 0;
-	int Trow = 0;
+	int tileLine = 0;
+	int tileRow = 0;
 
 	string temp;
 
@@ -61,16 +62,16 @@ void Map::mapCreature(vector<string>& str)
 						//map.push_back(Tile(ASSETS, IntRect(0, 0, 16, 16), Vector2f(tileSize * row / 2, tileSize * line)));
 						if (intmap[intmap.size() - 1] != -1)
 						{
-							Trow = intmap[intmap.size() - 1];
-							while (Trow > 23)
+							tileRow = intmap[intmap.size() - 1];
+							while (tileRow > 23)
 							{
-								Trow = Trow - 23;
-								Tline++;
+								tileRow = tileRow - 23;
+								tileLine++;
 							}
-							map.push_back(Tile(ASSETS, IntRect(Trow * tileSize, Tline * tileSize, 16, 16), Vector2f(tileSize * (row + roomRow * roomSize), tileSize * (line + roomLine * roomSize))));
+							map.push_back(Tile(ASSETS, SOLID, intmap[intmap.size() - 1], IntRect(tileRow * tileSize, tileLine * tileSize, 16, 16), Vector2f(tileSize * (row + roomRow * roomSize), tileSize * (line + roomLine * roomSize))));
 						}
-						Tline = 0;
-						Trow = 0;
+						tileLine = 0;
+						tileRow = 0;
 						temp = "";
 						row ++;
 					}
@@ -105,6 +106,7 @@ void Map::load()
 	//string str;
 	Sprite& getSprite();
 	vector<string> str;
+	//list<vector<string>> lvl;
 	str = Map::loadFile();
 	Map::mapCreature(str);
 }

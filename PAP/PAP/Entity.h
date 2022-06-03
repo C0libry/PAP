@@ -4,6 +4,7 @@
 #include "Base.h"
 #include "level.h"
 #include "Tile.h"
+#include "Map.h"
 
 class Entity : public Base
 {

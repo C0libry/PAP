@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include "Map.h"
 
 Entity::Entity(const Objects& obj, const IntRect& rect, const Vector2f& pos) : Base(obj)
 {
@@ -62,25 +61,25 @@ void Entity::mapCollision()
 
 	for (int i = 0; i < map.size(); i++)
 	{
-		if (borderTop.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
+		if (borderTop.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 0.01);
 			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().height);
 			ceilingCollide = true;
 		}
-		if (borderBottom.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
+		if (borderBottom.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.01);
 			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y - sprite.getGlobalBounds().height + lineThickness + 0.1);
 			groundCollide = true;
 		}
-		if (borderRight.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
+		if (borderRight.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x - 0.01, sprite.getPosition().y);
 			//sprite.setPosition(map[i].getSprite().getPosition().x, sprite.getPosition().y);
 			rightSideCollide = true;
 		}
-		if (borderLeft.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getSolid())
+		if (borderLeft.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().width, sprite.getPosition().y);
 			//sprite.setPosition(sprite.getPosition().x + 0.01, sprite.getPosition().y);

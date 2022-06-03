@@ -11,6 +11,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <list>
 #include <math.h>
 #include <thread>
 //#include <chrono>
@@ -34,7 +35,7 @@ enum State
 	DEATH
 };
 
-//enum Objectteg
+//enum ObjectTeg
 
 //Перечисление - содержащие все имена объекта
 enum Objects

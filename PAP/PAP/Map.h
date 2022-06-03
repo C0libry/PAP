@@ -13,6 +13,7 @@ class Map
 {
 private:
 	static vector<Tile> map;
+	static list<vector<Tile>> lvl;
 	//static Rooms rooms[ROOMS_NUMBER];
 public:
 	static vector<string> loadFile();
