@@ -16,8 +16,9 @@ private:
 	static list<vector<Tile>> lvl;
 	//static Rooms rooms[ROOMS_NUMBER];
 public:
-	static vector<string> loadFile();
-	static void mapCreature(vector<string>& str);
+	static list<vector<string>> loadFile();
+	static void mapCreature(list<vector<string>> lvl);
+	static void levelCreature(vector<string>& str, vector<int>& intmap, const int& roomRow, const int& roomLine, const TileType tileType);
 	static void load();
 	static void render(RenderWindow& window);
 	static const vector<Tile>& getMap();
