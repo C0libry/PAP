@@ -13,7 +13,8 @@ enum  TileType
 	DECOR,
 	SPIKES,
 	LEVER,
-	DOOR
+	DOOR,
+	BACKGROUND
 };
 
 class Tile : public Base

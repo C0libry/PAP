@@ -23,40 +23,44 @@ list<vector<string>> Map::loadFile()
 
 	//ifstream f("resources/map/map.txt");
 	//ifstream f("resources/map/rooms/TestRoom.txt");
-	//ifstream f("resources/map/rooms/test lvl_Слой тайлов 1.csv");
+	//ifstream f("resources/map/rooms/test lvl_пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1.csv");
 	//ifstream f("resources/map/rooms/room 2/lvl 2_physics.csv");
 
 	list<vector<string>> lvl;
 	vector<string> str;
 	string s;
 
-	ifstream f(physics);
-	while (f) {
-		f >> s;
+	ifstream Background(background);
+	while (Background) {
+		Background >> s;
 		str.push_back(s);
 	}
-	f.close();
-
+	Background.close();
 	lvl.push_back(str);
 	str.clear();
+	s.clear();
 
-	string Physics;
-
-	ifstream f1(temp);
-	while (f1) {
-		f1 >> Physics;
-		str.push_back(Physics);
-	}
-	f1.close();
-
-	ifstream f2(temp);
-	while (f2) {
-		f2 >> s;
+	ifstream Decor(decor);
+	while (Decor) {
+		Decor >> s;
 		str.push_back(s);
 	}
-	f2.close();
+	Decor.close();
+	lvl.push_back(str);
+	str.clear();
+	s.clear();
 
-	list<vector<string>>::iterator it = lvl.begin();
+	ifstream Physics(physics);
+	while (Physics) {
+		Physics >> s;
+		str.push_back(s);
+	}
+	Physics.close();
+	lvl.push_back(str);
+	str.clear();
+	s.clear();
+
+	//list<vector<string>>::iterator it = lvl.begin();
 
 	//return *it;
 	return lvl;
@@ -78,7 +82,12 @@ void Map::mapCreature(list<vector<string>> lvl)
 	{
 		for (int roomRow = 0; roomRow < roomsInLine; roomRow++)
 		{
-			levelCreature(str, intmap, roomRow, roomLine, SOLID);
+			it = lvl.begin();
+			levelCreature(*it, intmap, roomRow, roomLine, BACKGROUND);
+			it++;
+			levelCreature(*it, intmap, roomRow, roomLine, DECOR);
+			it++;
+			levelCreature(*it, intmap, roomRow, roomLine, SOLID);
 		}
 	}
 
@@ -133,7 +142,7 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 				}
 				tileLine = 0;
 				tileRow = 0;
-				temp = "";
+				temp.clear();
 				row++;
 			}
 			else
@@ -146,7 +155,7 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 
 void Map::load()
 {
-	//textureList[i].loadFromFile(HERO_NAME, IntRect(X, Y, ширина, высота));
+	//textureList[i].loadFromFile(HERO_NAME, IntRect(X, Y, пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ));
 	//textureList[0].loadFromFile(HERO_NAME);
 	//textureList[1].loadFromFile(TILE_BOX);
 
@@ -163,6 +172,16 @@ void Map::render(RenderWindow& window)
 	for (int i = 0; i < map.size(); i++)
 	{
 		map[i].render(window);
+		/*
+		if (map[i].getCurrentType() == BACKGROUND)
+			map[i].render(window);
+		else
+			if (map[i].getCurrentType() == DECOR)
+				map[i].render(window);
+			else
+				if (map[i].getCurrentType() == SOLID)
+					map[i].render(window);
+		*/
 	}
 }
 
