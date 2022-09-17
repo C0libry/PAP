@@ -16,5 +16,6 @@
 #include "Animation.h"
 #include "Map.h"
 #include "Camera.h"
+#include "Interface.h"
 
 #endif

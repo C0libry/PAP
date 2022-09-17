@@ -57,6 +57,7 @@ int main()
 	float want_fps = 60.f;
 	Clock deltaClock;
 	Base::setDeltaTime(10.f);
+	Interface::mainMenu(window);
 	while (window.isOpen())
 	{
 		//Base::setDeltaTime(deltaClock.getElapsedTime().asMicroseconds() / 1000.f);
@@ -68,7 +69,8 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-
+			if (Keyboard::isKeyPressed(Keyboard::Escape))
+				Interface::paus(window);
 			GameUpdater::getInstance().eventUpdate(event);
 			//clickWithCooldown(event, count, KeyPressed, allTime, (3 * 1000 * 1000));
 		}

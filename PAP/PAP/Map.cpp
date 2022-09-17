@@ -4,9 +4,9 @@ vector<Tile> Map::map;
 
 list<vector<string>> Map::loadFile()
 {
-	string fileName = "resources/map/rooms/room 2/lvl 2_physics.csv";
+	string fileName = "resources/map/rooms/room 3/lvl 3_physics.csv";
 
-	int lvlNum = 2;
+	int lvlNum = 3;
 
 	string temp;
 	temp = "resources/map/rooms/room ";
@@ -83,11 +83,11 @@ void Map::mapCreature(list<vector<string>> lvl)
 		for (int roomRow = 0; roomRow < roomsInLine; roomRow++)
 		{
 			it = lvl.begin();
-			levelCreature(*it, intmap, roomRow, roomLine, BACKGROUND);
+			levelCreature(*it, intmap, roomRow, roomLine, TileType::BACKGROUND);
 			it++;
-			levelCreature(*it, intmap, roomRow, roomLine, DECOR);
+			levelCreature(*it, intmap, roomRow, roomLine, TileType::DECOR);
 			it++;
-			levelCreature(*it, intmap, roomRow, roomLine, SOLID);
+			levelCreature(*it, intmap, roomRow, roomLine, TileType::SOLID);
 		}
 	}
 

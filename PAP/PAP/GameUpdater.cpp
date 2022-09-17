@@ -36,7 +36,6 @@ bool GameUpdater::update(Event event)
 {
 	hero.update(event);
 	slime.update(event);
-	//cout << hero.getHP() << endl;
 	if (hero.getHitBox().intersects(slime.getAttackHitBox()))
 	{
 		hero.setHP(hero.getHP() - slime.gerStrength());
@@ -48,4 +47,9 @@ bool GameUpdater::update(Event event)
 void GameUpdater::eventUpdate(Event& event)
 {
 	Camera::scrolle(camera, event);
+}
+
+Vector2f GameUpdater::getScreenCentre()
+{
+	return camera.getCenter();
 }

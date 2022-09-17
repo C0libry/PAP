@@ -21,4 +21,5 @@ public:
 	void render(RenderWindow& window);
 	bool update(Event event);
 	void eventUpdate(Event& event);
+	static Vector2f getScreenCentre();
 };
