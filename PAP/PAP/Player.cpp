@@ -66,6 +66,17 @@ void Player::control(Event& event)
 
 	if (dx == 0)
 		newState = STAND;
+
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		isAttack = true;
+		newState = ATTACK;
+	}
+	else
+	{
+		isAttack = false;
+	}
+
 	if (hp <= 0)
 		newState = DEATH;
 }
@@ -75,6 +86,7 @@ Player::Player(const Objects& obj, const IntRect& rect, const Vector2f& pos) : E
 	hp = 100;
 	strength = 10;
 	lookLeft = false;
+	isAttack = false;
 	spacePressed = false;
 }
 
@@ -92,6 +104,7 @@ void Player::playerAnimator()
 		Animator::animation(newState, currentState, this->sprite, lookLeft, 1, 1, 6, currentFrame);
 		break;
 	case State::ATTACK:
+		Animator::animation(newState, currentState, this->sprite, lookLeft, 7, 0, 3, currentFrame);
 		break;
 	case State::CAST_SPELL:
 		break;
@@ -109,12 +122,12 @@ void Player::playerAnimator()
 
 void Player::render(RenderWindow& window)
 {
-	//drowRect(window, hitBox, Color::Blue);
-	//drowRect(window, attackHitBox, Color::Blue);
 	drowRect(window, borderBottom, Color::Magenta);
 	drowRect(window, borderRight, Color::Yellow);
 	drowRect(window, borderLeft, Color::Cyan);
 	drowRect(window, borderTop, Color::Red);
+	if (newState == ATTACK)
+		drowRect(window, attackZone, Color::Blue);
 
 	window.draw(this->sprite);
 }

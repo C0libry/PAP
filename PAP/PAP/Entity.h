@@ -20,11 +20,11 @@ protected:
 	float dx, dy, currentFrame;
 	int hp, strength;
 	State currentState, newState;
-	FloatRect attackHitBox;
 	FloatRect borderBottom;
 	FloatRect borderRight;
 	FloatRect borderLeft;
 	FloatRect borderTop;
+	FloatRect attackZone;
 
 	Entity(const Objects& obj, const IntRect& rect, const Vector2f& pos);
 	void fall();
@@ -35,6 +35,7 @@ protected:
 public:
 	int gerStrength();
 	int getHP();
+	bool getIsAttack();
 	void setHP(int HP);
 	const FloatRect getAttackHitBox();
 };

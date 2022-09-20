@@ -16,4 +16,3 @@ public:
 	void update(Event& event) override;
 	void eventUpdate(Event& event) override;
 };
-

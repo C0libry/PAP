@@ -101,7 +101,7 @@ void Slime::update(Event& event)
 	hitBox.height -= (13 + 2);
 	hitBox.left += 3;
 	hitBox.width -= (3 + 3);
-	attackHitBox = hitBox;
+	attackZone = hitBox;
 	mapCollision();
 	control(event);
 	fall();

@@ -138,10 +138,6 @@ void Interface::paus(RenderWindow& window)
 
 			GameUpdater::getInstance().eventUpdate(event);
 		}
-		window.clear();
-		window.draw(play);
-		window.draw(endGame);
-		window.display();
 
 		if (Keyboard::isKeyPressed(Keyboard::Enter))
 		{
@@ -161,7 +157,7 @@ void Interface::paus(RenderWindow& window)
 			break;
 
 		window.clear();
-		//GameUpdater::getInstance().render(window);
+		GameUpdater::getInstance().render(window);
 		window.draw(play);
 		window.draw(endGame);
 		window.display();

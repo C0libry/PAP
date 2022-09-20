@@ -93,6 +93,21 @@ void Entity::mapCollision()
 	isCeilingCollide = ceilingCollide;
 	isRightSideCollide = rightSideCollide;
 	isLeftSideCollide = leftSideCollide;
+
+	if (lookLeft)
+	{
+		attackZone.left = hitBox.left - hitBox.width;
+		attackZone.top = hitBox.top;
+		attackZone.width = hitBox.width * 2;
+		attackZone.height = hitBox.height;
+	}
+	else
+	{
+		attackZone.left = hitBox.left;
+		attackZone.top = hitBox.top;
+		attackZone.width = hitBox.width * 2;
+		attackZone.height = hitBox.height;
+	}
 }
 
 //Temp fantion
@@ -124,6 +139,11 @@ int Entity::gerStrength()
 int Entity::getHP()
 {
 	return this->hp;
+}
+
+bool Entity::getIsAttack()
+{
+	return this->isAttack;
 }
 
 void Entity::setHP(int HP)
