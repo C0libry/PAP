@@ -68,8 +68,8 @@ list<vector<string>> Map::loadFile()
 
 void Map::mapCreature(list<vector<string>> lvl)
 {
-	int roomsInLine = 3;
-	int roomsInRow = 2;
+	int roomsInLine = 2;
+	int roomsInRow = 1;
 
 	list<vector<string>>::iterator it = lvl.begin();
 
@@ -113,7 +113,7 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 	int tileRow = 0;
 	string temp;
 
-	for (int line = 0; line < str.size(); line++)
+	for (int line = 0; line < str.size()-1; line++)
 	{
 		row = 0;
 		for (int j = 0; j < str[line].size(); j++)

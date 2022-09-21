@@ -10,6 +10,7 @@ void GameUpdater::loadGame()
 	Loader::startLoad();
 	Map::load();
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(500, 300), hero));
+	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(200, 200), hero));
 	//hero.loadEnemys(slime);
 }
 
@@ -29,32 +30,32 @@ GameUpdater::GameUpdater()
 void GameUpdater::render(RenderWindow& window)
 {
 	Map::render(window);
-	if (!enemies.empty())
-		enemies[0].render(window);
+	for(int i = 0; i < enemies.size(); i++)
+		enemies[i].render(window);
 	hero.render(window);
 	Camera::render(camera, window);
 }
 bool GameUpdater::update(Event event)
 {
 	hero.update(event);
-	enemies[0].update(event);
-	if (!enemies.empty())
+	for (int i = 0; i < enemies.size(); i++)
 	{
+		enemies[i].update(event);
 		if (hero.getHitBox().intersects(enemies[0].getAttackHitBox()))
 		{
-			hero.setHP(hero.getHP() - enemies[0].gerStrength());
+			hero.setHP(hero.getHP() - enemies[i].gerStrength());
 		}
 		if (hero.getIsAttack())
 		{
-			if (hero.getAttackHitBox().intersects(enemies[0].getHitBox()))
+			if (hero.getAttackHitBox().intersects(enemies[i].getHitBox()))
 			{
-				enemies[0].setHP(enemies[0].getHP() - hero.gerStrength());
+				enemies[i].setHP(enemies[i].getHP() - hero.gerStrength());
 			}
 		}
-		if (enemies[0].getHP() <= 0)
+		if (enemies[i].getHP() <= 0)
 		{
 			if (!enemies.empty())
-				//enemies.pop_back();
+				enemies.pop_back();
 				cout << "slime is dead";
 		}
 	}
