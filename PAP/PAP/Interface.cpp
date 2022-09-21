@@ -47,12 +47,12 @@ void Interface::mainMenu(RenderWindow& window)
 		Event event;
 		while (window.pollEvent(event))
 		{
-			if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
+			if ((Keyboard::isKeyPressed(Keyboard::Up)) || (Keyboard::isKeyPressed(Keyboard::W)))
 			{
 				pointer++;
 			}
 
-			if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S))))
+			if ((Keyboard::isKeyPressed(Keyboard::Down)) || (Keyboard::isKeyPressed(Keyboard::S)))
 			{
 				pointer--;
 			}
@@ -124,12 +124,12 @@ void Interface::paus(RenderWindow& window)
 		Event event;
 		while (window.pollEvent(event))
 		{
-			if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
+			if ((Keyboard::isKeyPressed(Keyboard::Up)) || (Keyboard::isKeyPressed(Keyboard::W)))
 			{
 				pointer++;
 			}
 
-			if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S))))
+			if ((Keyboard::isKeyPressed(Keyboard::Down)) || (Keyboard::isKeyPressed(Keyboard::S)))
 			{
 				pointer--;
 			}
@@ -163,4 +163,18 @@ void Interface::paus(RenderWindow& window)
 		window.display();
 	}
 
+}
+
+void Interface::interface(RenderWindow& window, int hitPoints)
+{
+	Vector2f screenCentre = GameUpdater::getScreenCentre();
+	string str;
+	str = to_string(hitPoints);
+	Font font;
+	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
+	Text hp("", font, 50);
+	hp.setFillColor(Color::Red);
+	hp.setString(str);
+	hp.setPosition(screenCentre.x - 480 + 10, screenCentre.y - 270 + 20);
+	window.draw(hp);
 }

@@ -67,7 +67,8 @@ void Player::control(Event& event)
 	if (dx == 0)
 		newState = STAND;
 
-	if (Mouse::isButtonPressed(Mouse::Left))
+	//if (Mouse::isButtonPressed(Mouse::Left))
+	if (Keyboard::isKeyPressed(Keyboard::LShift))
 	{
 		isAttack = true;
 		newState = ATTACK;
@@ -120,6 +121,25 @@ void Player::playerAnimator()
 	}
 }
 
+void Player::updatePlayerAttackZone()
+{
+	if (lookLeft)
+	{
+		attackZone.left = hitBox.left - hitBox.width;
+		attackZone.top = hitBox.top;
+		attackZone.width = hitBox.width * 2;
+		attackZone.height = hitBox.height;
+	}
+	else
+	{
+		attackZone.left = hitBox.left;
+		attackZone.top = hitBox.top;
+		attackZone.width = hitBox.width * 2;
+		attackZone.height = hitBox.height;
+	}
+}
+
+
 void Player::render(RenderWindow& window)
 {
 	drowRect(window, borderBottom, Color::Magenta);
@@ -140,6 +160,7 @@ void Player::update(Event& event)
 	hitBox.left += 16;
 	hitBox.width -= (18 + 16);
 	mapCollision();
+	updatePlayerAttackZone();
 	control(event);
 	//enemyCollision();
 	fall();

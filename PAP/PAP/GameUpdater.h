@@ -4,10 +4,10 @@
 #include "Player.h"
 #include "Slime.h"
 #include "Camera.h"
+#include "Interface.h"
 
 class GameUpdater
 {
-	// Возможно переесу сюда обновлени кадров игры и рыендер и main.cpp
 private:
 	//virtual ~GameUpdater() = 0;
 	//Base * hero;

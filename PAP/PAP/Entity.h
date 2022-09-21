@@ -37,5 +37,6 @@ public:
 	int getHP();
 	bool getIsAttack();
 	void setHP(int HP);
+	const FloatRect getHitBox();
 	const FloatRect getAttackHitBox();
 };

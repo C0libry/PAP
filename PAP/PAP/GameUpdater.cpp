@@ -9,7 +9,7 @@ void GameUpdater::loadGame()
 {
 	Loader::startLoad();
 	Map::load();
-	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(500, 300), hero));
+	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(400, 300), hero));
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(200, 200), hero));
 	//hero.loadEnemys(slime);
 }
@@ -34,6 +34,7 @@ void GameUpdater::render(RenderWindow& window)
 		enemies[i].render(window);
 	hero.render(window);
 	Camera::render(camera, window);
+	Interface::interface(window, hero.getHP());
 }
 bool GameUpdater::update(Event event)
 {
@@ -41,7 +42,7 @@ bool GameUpdater::update(Event event)
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		enemies[i].update(event);
-		if (hero.getHitBox().intersects(enemies[0].getAttackHitBox()))
+		if (hero.getHitBox().intersects(enemies[i].getAttackHitBox()))
 		{
 			hero.setHP(hero.getHP() - enemies[i].gerStrength());
 		}
@@ -55,8 +56,7 @@ bool GameUpdater::update(Event event)
 		if (enemies[i].getHP() <= 0)
 		{
 			if (!enemies.empty())
-				enemies.pop_back();
-				cout << "slime is dead";
+				enemies.erase(enemies.begin()+i);
 		}
 	}
 	Camera::move(camera, hero.getCentrePosition());
