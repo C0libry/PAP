@@ -172,9 +172,9 @@ void Interface::interface(RenderWindow& window, int hitPoints)
 	str = to_string(hitPoints);
 	Font font;
 	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
-	Text hp("", font, 50);
+	Text hp("", font, 50 * Camera::getZoomFactor());
 	hp.setFillColor(Color::Red);
 	hp.setString(str);
-	hp.setPosition(screenCentre.x - 480 + 10, screenCentre.y - 270 + 20);
+	hp.setPosition(screenCentre.x - 480 * Camera::getZoomFactor() + 10 * Camera::getZoomFactor(), screenCentre.y - 270 * Camera::getZoomFactor() + 20 * Camera::getZoomFactor());
 	window.draw(hp);
 }

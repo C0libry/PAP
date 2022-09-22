@@ -10,4 +10,5 @@ public:
 	static void move(View& camera, const Vector2f& pos);
 	static void render(View& camera, RenderWindow& window);
 	static void scrolle(View& camera, Event& event);
+	static float getZoomFactor();
 };

@@ -7,6 +7,7 @@
 class Slime: public Enemy
 {
 protected:
+	Int64 timer = 0;
 	void control(Event& event);
 	void attack();
 	void slimeAnimator();
@@ -15,4 +16,6 @@ public:
 	void render(RenderWindow& window) override;
 	void update(Event& event) override;
 	void eventUpdate(Event& event) override;
+	void setTimer(Int64 timer);
+	Int64 getTimer();
 };

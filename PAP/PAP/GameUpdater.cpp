@@ -1,5 +1,8 @@
 #include "GameUpdater.h"
 
+static Int64 GameTime = 0;
+Clock deltaClock;
+
 //GameUpdater::~GameUpdater() {};
 Player hero(PLAYER, IntRect(0, 0, 50, 37), Vector2f(0, 0));
 vector <Slime> enemies;
@@ -38,13 +41,19 @@ void GameUpdater::render(RenderWindow& window)
 }
 bool GameUpdater::update(Event event)
 {
+	GameTime = deltaClock.getElapsedTime().asMilliseconds();
+	int delay = 1 * 1000;
 	hero.update(event);
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		enemies[i].update(event);
 		if (hero.getHitBox().intersects(enemies[i].getAttackHitBox()))
 		{
-			hero.setHP(hero.getHP() - enemies[i].gerStrength());
+			if (enemies[i].getTimer() + delay < GameTime)
+			{
+				hero.setHP(hero.getHP() - enemies[i].gerStrength());
+				enemies[i].setTimer(GameTime);
+			}
 		}
 		if (hero.getIsAttack())
 		{

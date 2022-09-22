@@ -142,13 +142,14 @@ void Player::updatePlayerAttackZone()
 
 void Player::render(RenderWindow& window)
 {
+	/*
 	drowRect(window, borderBottom, Color::Magenta);
 	drowRect(window, borderRight, Color::Yellow);
 	drowRect(window, borderLeft, Color::Cyan);
 	drowRect(window, borderTop, Color::Red);
 	if (newState == ATTACK)
 		drowRect(window, attackZone, Color::Blue);
-
+	*/
 	window.draw(this->sprite);
 }
 

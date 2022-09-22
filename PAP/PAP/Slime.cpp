@@ -86,11 +86,10 @@ Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Playe
 void Slime::render(RenderWindow& window)
 {
 	//drowRect(window, hitBox, Color::Blue);
-	//drowRect(window, attackHitBox, Color::Blue);
-	drowRect(window, borderBottom, Color::Magenta);
-	drowRect(window, borderRight, Color::Yellow);
-	drowRect(window, borderLeft, Color::Cyan);
-	drowRect(window, borderTop, Color::Red);
+	//drowRect(window, borderBottom, Color::Magenta);
+	//drowRect(window, borderRight, Color::Yellow);
+	//drowRect(window, borderLeft, Color::Cyan);
+	//drowRect(window, borderTop, Color::Red);
 
 	window.draw(this->sprite);
 }
@@ -110,3 +109,12 @@ void Slime::update(Event& event)
 }
 void Slime::eventUpdate(Event& event)
 {}
+
+void Slime::setTimer(Int64 timer)
+{
+	this->timer = timer;
+}
+Int64 Slime::getTimer()
+{
+	return this->timer;
+}
