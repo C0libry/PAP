@@ -80,7 +80,7 @@ void Slime::slimeAnimator()
 Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos, p)
 {
 	hp = 20;
-	strength = 3;
+	strength = 10;
 }
 
 void Slime::render(RenderWindow& window)

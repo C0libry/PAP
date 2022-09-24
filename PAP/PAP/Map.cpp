@@ -4,9 +4,9 @@ vector<Tile> Map::map;
 
 list<vector<string>> Map::loadFile()
 {
-	string fileName = "resources/map/rooms/room 3/lvl 3_physics.csv";
+	string fileName = "resources/map/rooms/room 4/lvl 4_physics.csv";
 
-	int lvlNum = 3;
+	int lvlNum = 4;
 
 	string temp;
 	temp = "resources/map/rooms/room ";
@@ -133,9 +133,9 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 				if (intmap[intmap.size() - 1] != -1)
 				{
 					tileRow = intmap[intmap.size() - 1];
-					while (tileRow > 23)
+					while (tileRow > 20)
 					{
-						tileRow = tileRow - 23;
+						tileRow = tileRow - 20;
 						tileLine++;
 					}
 					map.push_back(Tile(ASSETS, tileType, intmap[intmap.size() - 1], IntRect(tileRow * tileSize, tileLine * tileSize, 16, 16), Vector2f(tileSize * (row + roomRow * roomSize), tileSize * (line + roomLine * roomSize))));

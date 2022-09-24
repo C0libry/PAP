@@ -27,7 +27,7 @@ void Player::control(Event& event)
 			//if (onGround) newState = MOVE;
 		}
 	}
-
+	/*
 	if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
 	{
 		//sprite.move(0, -0.1f * deltaTime);
@@ -46,7 +46,7 @@ void Player::control(Event& event)
 		{
 			spacePressed = false;
 		}
-	}
+	}*/
 
 	//if (Keyboard::isKeyPressed(Keyboard::Space))
 	//if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
@@ -56,7 +56,7 @@ void Player::control(Event& event)
 		if (!spacePressed && onGround)
 		{
 			dy = -0.11f;
-			spacePressed = true;
+			//spacePressed = true;
 			onGround = false;
 		}
 	}
