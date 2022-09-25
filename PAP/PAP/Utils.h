@@ -2,7 +2,7 @@
 
 #include "Include.h"
 
-static const int SIZE = 3;
+static const int SIZE = 7;
 static Texture textureList[SIZE];
 
 //Класс, который загружает текстуры

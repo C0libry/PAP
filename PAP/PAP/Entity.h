@@ -39,4 +39,5 @@ public:
 	void setHP(int HP);
 	const FloatRect getHitBox();
 	const FloatRect getAttackHitBox();
+	virtual void attack() = 0;
 };

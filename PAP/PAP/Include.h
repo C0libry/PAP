@@ -43,14 +43,21 @@ enum Objects
 	PLAYER,
 	ASSETS,
 	SLIME,
-	BOX
+	HELL_HOUND_IDLE,
+	HELL_HOUND_JUMP,
+	HELL_HOUND_RUN,
+	HELL_HOUND_WALK
 };
 
 //Глобальные статические константы
-static const String TILE_BOX = "resources/images/tile.png";
+//static const String TILE_BOX = "resources/images/tile.png";
 static const String TILE_ASSETS = "resources/images/Assets.png";
 static const String HERO_NAME = "resources/images/adventurer-v1.5-Sheet.png";
 static const String SLIME_NAME = "resources/images/slime-Sheet.png";
+static const String HELL_HOUND_IDLE_NAME = "resources/images/hell-hound-idle.png";
+static const String HELL_HOUND_JUMP_NAME = "resources/images/hell-hound-jump.png";
+static const String HELL_HOUND_RUN_NAME = "resources/images/hell-hound-run.png";
+static const String HELL_HOUND_WALK_NAME = "resources/images/hell-hound-walk.png";
 
 static const float GRAVITY = 0.0003f;
 

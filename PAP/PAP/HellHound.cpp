@@ -1,6 +1,10 @@
-#include "Slime.h"
+#include "HellHound.h"
 
-void Slime::control(Event& event)
+Sprite jump;
+Sprite run;
+Sprite walk;
+
+void HellHound::control(Event& event)
 {
 	//currentState = STAND;
 	newState = STAND;
@@ -41,7 +45,7 @@ void Slime::control(Event& event)
 		newState = DEATH;
 }
 
-void Slime::slimeAnimator()
+void HellHound::hellHoundAnimator()
 {
 	switch (newState)
 	{
@@ -50,13 +54,13 @@ void Slime::slimeAnimator()
 		isEndOfAnimation = false;
 		break;
 	case State::MOVE:
-		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 4, 8, currentFrame);
+		Animator::animation(newState, currentState, walk, !lookLeft, 0, 4, 8, currentFrame);
 		break;
 	case State::JUMP:
 		break;
 	case State::ATTACK:
 		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
-		Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
+		Animator::animation(newState, currentState, run, !lookLeft, 1, 1, 6, currentFrame);
 		break;
 	case State::CAST_SPELL:
 		break;
@@ -72,13 +76,24 @@ void Slime::slimeAnimator()
 	}
 }
 
-Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos, p)
+HellHound::HellHound(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos, p)
 {
 	hp = 20;
-	strength = 10;
+	strength = 20;
+	jump.setTexture(Loader::getTexture(HELL_HOUND_JUMP));
+	run.setTexture(Loader::getTexture(HELL_HOUND_RUN));
+	walk.setTexture(Loader::getTexture(HELL_HOUND_WALK));
+
+	jump.setTextureRect(IntRect(0, 0, 65, 48));
+	run.setTextureRect(IntRect(0, 0, 67, 32));
+	walk.setTextureRect(IntRect(0, 0, 64, 32));
+
+	jump.setPosition(pos);
+	run.setPosition(pos);
+	walk.setPosition(pos);
 }
 
-void Slime::render(RenderWindow& window)
+void HellHound::render(RenderWindow& window)
 {
 	//drowRect(window, hitBox, Color::Blue);
 	//drowRect(window, borderBottom, Color::Magenta);
@@ -88,23 +103,26 @@ void Slime::render(RenderWindow& window)
 
 	window.draw(this->sprite);
 }
-void Slime::update(Event& event)
+void HellHound::update(Event& event)
 {
 	hitBox = FloatRect(sprite.getGlobalBounds());
-	hitBox.top += 13;
-	hitBox.height -= (13 + 2);
-	hitBox.left += 3;
-	hitBox.width -= (3 + 3);
-	attackZone = hitBox;
+	//hitBox.top += 13;
+	//hitBox.height -= (13 + 2);
+	//hitBox.left += 3;
+	//hitBox.width -= (3 + 3);
+	//attackZone = hitBox;
 	mapCollision();
 	control(event);
 	fall();
-	slimeAnimator();
+	hellHoundAnimator();
+	jump.setPosition(sprite.getPosition());
+	run.setPosition(sprite.getPosition());
+	walk.setPosition(sprite.getPosition());
 	dx = 0;
 	attack();
 }
 
-void Slime::attack()
+void HellHound::attack()
 {
 	int delay = 1 * 1000;
 	Int64 GameTime = GameUpdater::getGameTime();
@@ -125,14 +143,14 @@ void Slime::attack()
 	}
 }
 
-void Slime::eventUpdate(Event& event)
+void HellHound::eventUpdate(Event& event)
 {}
 
-void Slime::setTimer(Int64 timer)
+void HellHound::setTimer(Int64 timer)
 {
 	this->timer = timer;
 }
-Int64 Slime::getTimer()
+Int64 HellHound::getTimer()
 {
 	return this->timer;
 }

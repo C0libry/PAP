@@ -6,7 +6,7 @@
 class Base
 {
 protected:
-	static float deltaTime;
+	static Int64 deltaTime;
 	Sprite sprite;
 	FloatRect hitBox;
 	bool isEndOfAnimation;
@@ -33,8 +33,8 @@ public:
 	//static void setDeltaTime(float DeltaTime);
 
 	Sprite& getSprite();
-	static float& getDeltaTime();
-	static void setDeltaTime(float DeltaTime);
+	static const Int64& getDeltaTime();
+	static void setDeltaTime(Int64 DeltaTime);
 	static float distance(Vector2f point1, Vector2f point2);
 	Vector2f getCentrePosition();
 	const FloatRect getHitBox();

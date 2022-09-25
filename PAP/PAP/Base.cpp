@@ -2,7 +2,7 @@
 
 Base::~Base() {};
 
-float Base::deltaTime;
+Int64 Base::deltaTime;
 
 
 Base::Base(const Objects& obj)
@@ -16,12 +16,12 @@ Sprite& Base::getSprite()
 	return sprite;
 }
 
-float& Base::getDeltaTime()
+const Int64& Base::getDeltaTime()
 {
 	return deltaTime;
 }
 
-void Base::setDeltaTime(float DeltaTime)
+void Base::setDeltaTime(Int64 DeltaTime)
 {
 	deltaTime = DeltaTime;
 }

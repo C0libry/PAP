@@ -1,11 +1,12 @@
 #include "GameUpdater.h"
 
-static Int64 GameTime = 0;
+Int64 GameUpdater::gameTime = 0;
 Clock deltaClock;
 
 //GameUpdater::~GameUpdater() {};
 Player hero(PLAYER, IntRect(0, 0, 50, 37), Vector2f(0, 0));
 vector <Slime> enemies;
+vector <HellHound> hellHounds;
 View camera = Camera::load();
 
 void GameUpdater::loadGame()
@@ -14,6 +15,7 @@ void GameUpdater::loadGame()
 	Map::load();
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(400, 300), hero));
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(200, 200), hero));
+	hellHounds.push_back(HellHound(HELL_HOUND_IDLE, IntRect(0, 0, 64, 32), Vector2f(100, 100), hero));
 	//hero.loadEnemys(slime);
 }
 
@@ -33,41 +35,41 @@ GameUpdater::GameUpdater()
 void GameUpdater::render(RenderWindow& window)
 {
 	Map::render(window);
+	for (int i = 0; i < hellHounds.size(); i++)
+		hellHounds[i].render(window);
+
 	for(int i = 0; i < enemies.size(); i++)
 		enemies[i].render(window);
+
 	hero.render(window);
 	Camera::render(camera, window);
 	Interface::interface(window, hero.getHP());
 }
 bool GameUpdater::update(Event event)
 {
-	GameTime = deltaClock.getElapsedTime().asMilliseconds();
-	int delay = 1 * 1000;
+	gameTime = deltaClock.getElapsedTime().asMilliseconds();
 	hero.update(event);
+
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		enemies[i].update(event);
-		if (hero.getHitBox().intersects(enemies[i].getAttackHitBox()))
-		{
-			if (enemies[i].getTimer() + delay < GameTime)
-			{
-				hero.setHP(hero.getHP() - enemies[i].gerStrength());
-				enemies[i].setTimer(GameTime);
-			}
-		}
-		if (hero.getIsAttack())
-		{
-			if (hero.getAttackHitBox().intersects(enemies[i].getHitBox()))
-			{
-				enemies[i].setHP(enemies[i].getHP() - hero.gerStrength());
-			}
-		}
 		if (enemies[i].getHP() <= 0)
 		{
 			if (!enemies.empty())
-				enemies.erase(enemies.begin()+i);
+				enemies.erase(enemies.begin() + i);
 		}
 	}
+
+	for (int i = 0; i < hellHounds.size(); i++)
+	{
+		hellHounds[i].update(event);
+		if (hellHounds[i].getHP() <= 0)
+		{
+			if (!hellHounds.empty())
+				hellHounds.erase(hellHounds.begin() + i);
+		}
+	}
+
 	Camera::move(camera, hero.getCentrePosition());
 	//Camera::move(camera, hero.getSprite().getPosition());
 	return hero.isLife();
@@ -80,4 +82,14 @@ void GameUpdater::eventUpdate(Event& event)
 Vector2f GameUpdater::getScreenCentre()
 {
 	return camera.getCenter();
+}
+
+Int64 GameUpdater::getGameTime()
+{
+	return gameTime;
+}
+
+void GameUpdater::setGameTime(Int64 GameTime)
+{
+	gameTime = GameTime;
 }

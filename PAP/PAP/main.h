@@ -12,6 +12,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Slime.h"
+#include "HellHound.h"
 #include "Tile.h"
 #include "Animation.h"
 #include "Map.h"

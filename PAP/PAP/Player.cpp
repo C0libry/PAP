@@ -121,6 +121,9 @@ void Player::playerAnimator()
 	}
 }
 
+void Player::attack()
+{}
+
 void Player::updatePlayerAttackZone()
 {
 	if (lookLeft)

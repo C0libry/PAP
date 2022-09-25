@@ -10,6 +10,7 @@ class Player : public Entity
 protected:
 	bool spacePressed;
 	void control(Event& event);
+	void attack() override;
 	void playerAnimator();
 	//void enemyCollision();
 	void updatePlayerAttackZone();
