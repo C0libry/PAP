@@ -71,7 +71,6 @@ bool GameUpdater::update(Event event)
 	}
 
 	Camera::move(camera, hero.getCentrePosition());
-	//Camera::move(camera, hero.getSprite().getPosition());
 	return hero.isLife();
 }
 void GameUpdater::eventUpdate(Event& event)

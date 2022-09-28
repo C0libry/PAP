@@ -22,6 +22,6 @@ public:
 	static void load();
 	static void render(RenderWindow& window);
 	static void update(Event event);
-	static const vector<Tile>& getMap();
+	static vector<Tile>& getMap();
 	//static void mapUpdate();
 };

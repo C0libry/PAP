@@ -195,7 +195,7 @@ void Player::isCollided()
 		{
 
 			coins++;
-			map.erase(map.begin() + i);
+			Map::getMap().erase(Map::getMap().begin() + i);
 		}
 	}
 }

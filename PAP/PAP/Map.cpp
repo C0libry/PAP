@@ -205,7 +205,7 @@ void Map::update(Event event)
 	}
 }
 
-const vector<Tile>& Map::getMap()
+vector<Tile>& Map::getMap()
 {
 	return map;
 }
