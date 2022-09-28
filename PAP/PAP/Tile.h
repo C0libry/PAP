@@ -3,6 +3,7 @@
 #include "Include.h"
 #include "Base.h"
 #include "Utils.h"
+#include "Animation.h"
 
 enum  TileType
 {

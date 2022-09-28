@@ -49,6 +49,27 @@ FloatRect Base::getSpriteGlobalBounds()
 	return sprite.getGlobalBounds();
 }
 
+//Temp function
+void Base::drowRect(RenderWindow& window, FloatRect rect, Color c)
+{
+	RectangleShape Rect(Vector2f(rect.width, rect.height));
+	//ectangleShape rectbot;
+	Rect.setFillColor(c);
+	//rectbot.setTextureRect(IntRect(bottom));
+	Rect.setPosition(rect.left, rect.top);
+
+	window.draw(Rect);
+}
+
+//Temp function
+void Base::drowRays(RenderWindow& window)
+{
+	sf::RectangleShape line(sf::Vector2f(150, 10));
+	line.rotate(45);
+	line.setFillColor(Color::Red);
+	window.draw(line);
+}
+
 /*
 void Base::setHitBox(const FloatRect& hb)
 {

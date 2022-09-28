@@ -17,9 +17,8 @@ protected:
 	bool isLeftSideCollide;
 	bool lookLeft;
 	bool isAttack;
-	float dx, dy, currentFrame;
+	float dx, dy;
 	int hp, strength;
-	State currentState, newState;
 	FloatRect borderBottom;
 	FloatRect borderRight;
 	FloatRect borderLeft;
@@ -30,8 +29,6 @@ protected:
 	void fall();
 	void mapCollision();
 	//bool isCollide(FloatRect rect1, FloatRect rect2);
-	void drowRect(RenderWindow& window, FloatRect rect, Color c);
-	void drowRays(RenderWindow& window);
 public:
 	int gerStrength();
 	int getHP();

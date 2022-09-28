@@ -60,6 +60,16 @@ list<vector<string>> Map::loadFile()
 	str.clear();
 	s.clear();
 
+	ifstream Objects(objects);
+	while (Objects) {
+		Objects >> s;
+		str.push_back(s);
+	}
+	Objects.close();
+	lvl.push_back(str);
+	str.clear();
+	s.clear();
+
 	//list<vector<string>>::iterator it = lvl.begin();
 
 	//return *it;
@@ -88,6 +98,8 @@ void Map::mapCreature(list<vector<string>> lvl)
 			levelCreature(*it, intmap, roomRow, roomLine, TileType::DECOR);
 			it++;
 			levelCreature(*it, intmap, roomRow, roomLine, TileType::SOLID);
+			it++;
+			levelCreature(*it, intmap, roomRow, roomLine, TileType::COIN);
 		}
 	}
 
@@ -182,6 +194,14 @@ void Map::render(RenderWindow& window)
 				if (map[i].getCurrentType() == SOLID)
 					map[i].render(window);
 		*/
+	}
+}
+
+void Map::update(Event event)
+{
+	for (int i = 0; i < map.size(); i++)
+	{
+		map[i].update(event);
 	}
 }
 

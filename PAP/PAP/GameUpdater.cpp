@@ -15,7 +15,7 @@ void GameUpdater::loadGame()
 	Map::load();
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(400, 300), hero));
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(200, 200), hero));
-	hellHounds.push_back(HellHound(HELL_HOUND_IDLE, IntRect(0, 0, 64, 32), Vector2f(100, 100), hero));
+	hellHounds.push_back(HellHound(HELL_HOUND_IDLE, IntRect(0, 0, 64, 32), Vector2f(150, 100), hero));
 	//hero.loadEnemys(slime);
 }
 
@@ -43,13 +43,13 @@ void GameUpdater::render(RenderWindow& window)
 
 	hero.render(window);
 	Camera::render(camera, window);
-	Interface::interface(window, hero.getHP());
+	Interface::interface(window, hero.getHP(), hero.getCoins());
 }
 bool GameUpdater::update(Event event)
 {
 	gameTime = deltaClock.getElapsedTime().asMilliseconds();
 	hero.update(event);
-
+	Map::update(event);
 	for (int i = 0; i < enemies.size(); i++)
 	{
 		enemies[i].update(event);

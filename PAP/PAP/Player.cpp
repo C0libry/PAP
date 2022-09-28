@@ -145,14 +145,14 @@ void Player::updatePlayerAttackZone()
 
 void Player::render(RenderWindow& window)
 {
-	/*
-	drowRect(window, borderBottom, Color::Magenta);
-	drowRect(window, borderRight, Color::Yellow);
-	drowRect(window, borderLeft, Color::Cyan);
-	drowRect(window, borderTop, Color::Red);
-	if (newState == ATTACK)
-		drowRect(window, attackZone, Color::Blue);
-	*/
+	//drowRect(window, sprite.getGlobalBounds(), Color::Blue);
+	//drowRect(window, hitBox, Color::White);
+	//drowRect(window, borderBottom, Color::Magenta);
+	//drowRect(window, borderRight, Color::Yellow);
+	//drowRect(window, borderLeft, Color::Cyan);
+	//drowRect(window, borderTop, Color::Red);
+	//if (newState == ATTACK)
+	//	drowRect(window, attackZone, Color::Blue);
 	window.draw(this->sprite);
 }
 
@@ -169,6 +169,7 @@ void Player::update(Event& event)
 	//enemyCollision();
 	fall();
 	playerAnimator();
+	isCollided();
 	dx = 0;
 }
 
@@ -183,9 +184,30 @@ void Player::eventUpdate(Event& event)
 		}
 	}*/
 }
+
+void Player::isCollided()
+{
+	vector<Tile> map = Map::getMap();
+
+	for (int i = 0; i < map.size(); i++)
+	{
+		if (hitBox.intersects(map[i].getHitBox()) && map[i].getCurrentType() == COIN)
+		{
+
+			coins++;
+			map.erase(map.begin() + i);
+		}
+	}
+}
+
 bool Player::isLife()
 {
 	return life;
+}
+
+int Player::getCoins()
+{
+	return coins;
 }
 
 /*

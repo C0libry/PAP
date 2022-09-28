@@ -13,16 +13,16 @@ void Interface::mainMenu(RenderWindow& window)
 	bool game = false;
 	Font font;
 	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
-	Text play("Play", font, 100);
-	Text endGame("Exit", font, 100);
+	Text play("Play", font, 50);
+	Text endGame("Exit", font, 50);
 	play.setFillColor(Color::Yellow);
 
 	int pointer = 1;
 	int max = 2;
 
 
-	play.setPosition(960 / 2 - play.getGlobalBounds().width / 2, 540 / 2 - play.getGlobalBounds().height / 2 - 100);
-	endGame.setPosition(960 / 2 - endGame.getGlobalBounds().width / 2, 540 / 2 - endGame.getGlobalBounds().height / 2 + 100);
+	play.setPosition(960 / 2 - play.getGlobalBounds().width / 2, 540 / 2 - play.getGlobalBounds().height / 2 - 50);
+	endGame.setPosition(960 / 2 - endGame.getGlobalBounds().width / 2, 540 / 2 - endGame.getGlobalBounds().height / 2 + 50);
 	//string s;
 	while (window.isOpen())
 	{
@@ -92,14 +92,14 @@ void Interface::paus(RenderWindow& window)
 	bool game = false;
 	Font font;
 	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
-	Text play("Continue", font, 100);
-	Text endGame("Exit", font, 100);
+	Text play("Continue", font, 50 * Camera::getZoomFactor());
+	Text endGame("Exit", font, 50 * Camera::getZoomFactor());
 	play.setFillColor(Color::Yellow);
 
 	int pointer = 1;
 	int max = 2;
-	play.setPosition(screenCentre.x - play.getGlobalBounds().width / 2, screenCentre.y - play.getGlobalBounds().height / 2 - 100);
-	endGame.setPosition(screenCentre.x - endGame.getGlobalBounds().width / 2, screenCentre.y - endGame.getGlobalBounds().height / 2 + 100);
+	play.setPosition(screenCentre.x - play.getGlobalBounds().width / 2 , screenCentre.y - play.getGlobalBounds().height / 2 - 50 * Camera::getZoomFactor());
+	endGame.setPosition(screenCentre.x - endGame.getGlobalBounds().width / 2 , screenCentre.y - endGame.getGlobalBounds().height / 2  + 50 * Camera::getZoomFactor());
 	//string s;
 	while (window.isOpen())
 	{
@@ -165,16 +165,23 @@ void Interface::paus(RenderWindow& window)
 
 }
 
-void Interface::interface(RenderWindow& window, int hitPoints)
+void Interface::interface(RenderWindow& window, int hitPoints, int coins)
 {
 	Vector2f screenCentre = GameUpdater::getScreenCentre();
 	string str;
-	str = to_string(hitPoints);
+	str = "HP:" + to_string(hitPoints);
 	Font font;
 	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
-	Text hp("", font, 50 * Camera::getZoomFactor());
+	Text hp("", font, 30 * Camera::getZoomFactor());
 	hp.setFillColor(Color::Red);
 	hp.setString(str);
 	hp.setPosition(screenCentre.x - 480 * Camera::getZoomFactor() + 10 * Camera::getZoomFactor(), screenCentre.y - 270 * Camera::getZoomFactor() + 20 * Camera::getZoomFactor());
 	window.draw(hp);
+
+	str = "C:" + to_string(coins);
+	Text C("", font, 30 * Camera::getZoomFactor());
+	C.setFillColor(Color::Yellow);
+	C.setString(str);
+	C.setPosition(screenCentre.x + 480 * Camera::getZoomFactor() - 10 * Camera::getZoomFactor() - C.getGlobalBounds().width, screenCentre.y - 270 * Camera::getZoomFactor() - 20 * Camera::getZoomFactor() + C.getGlobalBounds().height);
+	window.draw(C);
 }

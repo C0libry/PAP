@@ -9,6 +9,7 @@ class Player : public Entity
 {
 protected:
 	bool spacePressed;
+	int coins;
 	void control(Event& event);
 	void attack() override;
 	void playerAnimator();
@@ -20,7 +21,9 @@ public:
 	void render(RenderWindow& window) override;
 	void update(Event& event) override;
 	void eventUpdate(Event& event) override;
+	void isCollided();
 	bool isLife();
+	int getCoins();
 };
 
 /*

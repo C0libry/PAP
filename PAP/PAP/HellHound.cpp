@@ -1,5 +1,6 @@
 #include "HellHound.h"
 
+Sprite idle;
 Sprite jump;
 Sprite run;
 Sprite walk;
@@ -40,6 +41,7 @@ void HellHound::control(Event& event)
 	{
 		newState = ATTACK;
 		isAttack = true;
+		//sprite.setPosition(run.getPosition());
 	}
 	if (hp <= 0)
 		newState = DEATH;
@@ -50,23 +52,18 @@ void HellHound::hellHoundAnimator()
 	switch (newState)
 	{
 	case State::STAND:
-		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 0, 4, currentFrame);
+		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 0, 5, currentFrame);
 		isEndOfAnimation = false;
 		break;
 	case State::MOVE:
-		Animator::animation(newState, currentState, walk, !lookLeft, 0, 4, 8, currentFrame);
+		Animator::animation(newState, currentState, walk, !lookLeft, 0, 0, 11, currentFrame);
 		break;
 	case State::JUMP:
+		Animator::animation(newState, currentState, jump, !lookLeft, 0, 0, 5, currentFrame);
 		break;
 	case State::ATTACK:
 		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
-		Animator::animation(newState, currentState, run, !lookLeft, 1, 1, 6, currentFrame);
-		break;
-	case State::CAST_SPELL:
-		break;
-	case State::UP_LADDER:
-		break;
-	case State::DOWN_LADDER:
+		Animator::animation(newState, currentState, run, !lookLeft, 0, 0, 4, currentFrame);
 		break;
 	case State::DEATH:
 		life = false;
@@ -78,7 +75,7 @@ void HellHound::hellHoundAnimator()
 
 HellHound::HellHound(const Objects& obj, const IntRect& rect, const Vector2f& pos, Player& p) : Enemy(obj, rect, pos, p)
 {
-	hp = 20;
+	hp = 30;
 	strength = 20;
 	jump.setTexture(Loader::getTexture(HELL_HOUND_JUMP));
 	run.setTexture(Loader::getTexture(HELL_HOUND_RUN));
@@ -95,31 +92,43 @@ HellHound::HellHound(const Objects& obj, const IntRect& rect, const Vector2f& po
 
 void HellHound::render(RenderWindow& window)
 {
-	//drowRect(window, hitBox, Color::Blue);
-	//drowRect(window, borderBottom, Color::Magenta);
-	//drowRect(window, borderRight, Color::Yellow);
-	//drowRect(window, borderLeft, Color::Cyan);
-	//drowRect(window, borderTop, Color::Red);
-
-	window.draw(this->sprite);
+	switch (currentState)
+	{
+	case State::STAND:
+		window.draw(this->sprite);
+		break;
+	case State::MOVE:
+		window.draw(walk);
+		break;
+	case State::JUMP:
+		window.draw(jump);
+		break;
+	case State::ATTACK:
+		window.draw(run);
+		break;
+	default:
+		break;
+	}
 }
 void HellHound::update(Event& event)
 {
 	hitBox = FloatRect(sprite.getGlobalBounds());
-	//hitBox.top += 13;
-	//hitBox.height -= (13 + 2);
-	//hitBox.left += 3;
-	//hitBox.width -= (3 + 3);
-	//attackZone = hitBox;
+	hitBox.top += 11;
+	hitBox.height -= 11;
+	hitBox.left += 13;
+	hitBox.width -= (13 + 13);
 	mapCollision();
 	control(event);
 	fall();
-	hellHoundAnimator();
+	attackZone = hitBox;
+	if (onGround)
+		sprite.move(0, -0.11 * deltaTime);
 	jump.setPosition(sprite.getPosition());
 	run.setPosition(sprite.getPosition());
 	walk.setPosition(sprite.getPosition());
-	dx = 0;
+	hellHoundAnimator();
 	attack();
+	dx = 0;
 }
 
 void HellHound::attack()
@@ -130,7 +139,7 @@ void HellHound::attack()
 	{
 		if (getTimer() + delay < GameTime)
 		{
-			player->setHP(player->getHP() - gerStrength());
+			player->setHP(player->getHP() - strength);
 			setTimer(GameTime);
 		}
 	}

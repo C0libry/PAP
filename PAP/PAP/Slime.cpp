@@ -52,17 +52,9 @@ void Slime::slimeAnimator()
 	case State::MOVE:
 		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 4, 8, currentFrame);
 		break;
-	case State::JUMP:
-		break;
 	case State::ATTACK:
 		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
 		Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
-		break;
-	case State::CAST_SPELL:
-		break;
-	case State::UP_LADDER:
-		break;
-	case State::DOWN_LADDER:
 		break;
 	case State::DEATH:
 		life = false;
@@ -80,12 +72,6 @@ Slime::Slime(const Objects& obj, const IntRect& rect, const Vector2f& pos, Playe
 
 void Slime::render(RenderWindow& window)
 {
-	//drowRect(window, hitBox, Color::Blue);
-	//drowRect(window, borderBottom, Color::Magenta);
-	//drowRect(window, borderRight, Color::Yellow);
-	//drowRect(window, borderLeft, Color::Cyan);
-	//drowRect(window, borderTop, Color::Red);
-
 	window.draw(this->sprite);
 }
 void Slime::update(Event& event)
@@ -100,8 +86,8 @@ void Slime::update(Event& event)
 	control(event);
 	fall();
 	slimeAnimator();
-	dx = 0;
 	attack();
+	dx = 0;
 }
 
 void Slime::attack()
@@ -112,7 +98,7 @@ void Slime::attack()
 	{
 		if (getTimer() + delay < GameTime)
 		{
-			player->setHP(player->getHP() - gerStrength());
+			player->setHP(player->getHP() - strength);
 			setTimer(GameTime);
 		}
 	}

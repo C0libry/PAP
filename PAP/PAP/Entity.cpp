@@ -61,25 +61,25 @@ void Entity::mapCollision()
 
 	for (int i = 0; i < map.size(); i++)
 	{
-		if (borderTop.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
+		if (borderTop.intersects(map[i].getHitBox()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 0.01);
 			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().height);
 			ceilingCollide = true;
 		}
-		if (borderBottom.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
+		if (borderBottom.intersects(map[i].getHitBox()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 0.01);
 			sprite.setPosition(sprite.getPosition().x, map[i].getSprite().getPosition().y - sprite.getGlobalBounds().height + lineThickness + 0.1);
 			groundCollide = true;
 		}
-		if (borderRight.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
+		if (borderRight.intersects(map[i].getHitBox()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(sprite.getPosition().x - 0.01, sprite.getPosition().y);
 			//sprite.setPosition(map[i].getSprite().getPosition().x, sprite.getPosition().y);
 			rightSideCollide = true;
 		}
-		if (borderLeft.intersects(map[i].getSprite().getGlobalBounds()) && map[i].getCurrentType() == SOLID)
+		if (borderLeft.intersects(map[i].getHitBox()) && map[i].getCurrentType() == SOLID)
 		{
 			//sprite.setPosition(map[i].getSprite().getPosition().y + map[i].getSprite().getGlobalBounds().width, sprite.getPosition().y);
 			//sprite.setPosition(sprite.getPosition().x + 0.01, sprite.getPosition().y);
@@ -93,27 +93,6 @@ void Entity::mapCollision()
 	isCeilingCollide = ceilingCollide;
 	isRightSideCollide = rightSideCollide;
 	isLeftSideCollide = leftSideCollide;
-}
-
-//Temp fantion
-void Entity::drowRect(RenderWindow& window, FloatRect rect, Color c)
-{
-	RectangleShape Rect(Vector2f(rect.width, rect.height));
-	//ectangleShape rectbot;
-	Rect.setFillColor(c);
-	//rectbot.setTextureRect(IntRect(bottom));
-	Rect.setPosition(rect.left, rect.top);
-
-	window.draw(Rect);
-}
-
-//Temp fantion
-void Entity::drowRays(RenderWindow& window)
-{
-	sf::RectangleShape line(sf::Vector2f(150, 10));
-	line.rotate(45);
-	line.setFillColor(Color::Red);
-	window.draw(line);
 }
 
 int Entity::gerStrength()
