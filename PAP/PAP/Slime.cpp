@@ -7,7 +7,7 @@ void Slime::control(Event& event)
 	float Distance = distance(getCentrePosition(), player->getCentrePosition());
 	if (Distance < 400 && Distance > 10)
 	{
-		if (player->getCentrePosition().x < sprite.getPosition().x)
+		if (player->getCentrePosition().x < getCentrePosition().x)
 		{
 			if (!isLeftSideCollide)
 			{

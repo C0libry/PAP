@@ -12,14 +12,14 @@ void HellHound::control(Event& event)
 	float Distance = distance(getCentrePosition(), player->getCentrePosition());
 	if (Distance < 400 && Distance > 10)
 	{
-		if (player->getCentrePosition().x < sprite.getPosition().x)
+		if (player->getCentrePosition().x < getCentrePosition().x)
 		{
 			if (!isLeftSideCollide)
 			{
 				//cout << distance(sprite.getPosition(), player->getPosition());
 				isRightSideCollide = false;
 				lookLeft = true;
-				dx = -0.05f;
+				dx = -0.07f;
 				sprite.move(dx * deltaTime, 0);
 				newState = MOVE;
 				//if (onGround) newState = MOVE;
@@ -31,7 +31,7 @@ void HellHound::control(Event& event)
 			{
 				isLeftSideCollide = false;
 				lookLeft = false;
-				dx = 0.05f;
+				dx = 0.07f;
 				sprite.move(dx * deltaTime, 0);
 				newState = MOVE;
 			}
