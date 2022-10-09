@@ -3,7 +3,6 @@
 Int64 GameUpdater::gameTime = 0;
 Clock deltaClock;
 
-//GameUpdater::~GameUpdater() {};
 Player hero(PLAYER, IntRect(0, 0, 50, 37), Vector2f(0, 0));
 vector <Slime> enemies;
 vector <HellHound> hellHounds;
@@ -16,10 +15,7 @@ void GameUpdater::loadGame()
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(400, 300), hero));
 	enemies.push_back(Slime(SLIME, IntRect(0, 0, 32, 25), Vector2f(200, 200), hero));
 	hellHounds.push_back(HellHound(HELL_HOUND_IDLE, IntRect(0, 0, 64, 32), Vector2f(150, 100), hero));
-	//hero.loadEnemys(slime);
 }
-
-//void GameUpdater::loadEnemys()
 
 GameUpdater& GameUpdater::getInstance()
 {

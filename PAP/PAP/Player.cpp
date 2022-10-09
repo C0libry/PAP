@@ -11,7 +11,6 @@ void Player::control(Event& event)
 			dx = -0.15f;
 			sprite.move(dx * deltaTime, 0);
 			newState = MOVE;
-			//if (onGround) newState = MOVE;
 		}
 	}
 
@@ -24,39 +23,13 @@ void Player::control(Event& event)
 			dx = 0.15f;
 			sprite.move(dx * deltaTime, 0);
 			newState = MOVE;
-			//if (onGround) newState = MOVE;
 		}
 	}
-	/*
-	if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
-	{
-		//sprite.move(0, -0.1f * deltaTime);
-	}
-
-	if ((Keyboard::isKeyPressed(Keyboard::Down) || (Keyboard::isKeyPressed(Keyboard::S))))
-	{
-		//sprite.move(0, 0.1f * deltaTime);
-	}
-
-	if (event.type == Event::KeyReleased)
-	{
-		//if (event.key.code == Keyboard::Space)
-		//if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
-		if ((event.key.code == Keyboard::Up) || (event.key.code == Keyboard::W) || (event.key.code == Keyboard::Space))
-		{
-			spacePressed = false;
-		}
-	}*/
-
-	//if (Keyboard::isKeyPressed(Keyboard::Space))
-	//if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W))))
 	if ((Keyboard::isKeyPressed(Keyboard::Up)) || (Keyboard::isKeyPressed(Keyboard::W)) || (Keyboard::isKeyPressed(Keyboard::Space)))
 	{
-		//dy -= 0.01f;
 		if (!spacePressed && onGround)
 		{
 			dy = -0.11f;
-			//spacePressed = true;
 			onGround = false;
 		}
 	}
@@ -67,7 +40,6 @@ void Player::control(Event& event)
 	if (dx == 0)
 		newState = STAND;
 
-	//if (Mouse::isButtonPressed(Mouse::Left))
 	if (Keyboard::isKeyPressed(Keyboard::LShift))
 	{
 		isAttack = true;
@@ -145,14 +117,6 @@ void Player::updatePlayerAttackZone()
 
 void Player::render(RenderWindow& window)
 {
-	//drowRect(window, sprite.getGlobalBounds(), Color::Blue);
-	//drowRect(window, hitBox, Color::White);
-	//drowRect(window, borderBottom, Color::Magenta);
-	//drowRect(window, borderRight, Color::Yellow);
-	//drowRect(window, borderLeft, Color::Cyan);
-	//drowRect(window, borderTop, Color::Red);
-	//if (newState == ATTACK)
-	//	drowRect(window, attackZone, Color::Blue);
 	window.draw(this->sprite);
 }
 
@@ -166,26 +130,15 @@ void Player::update(Event& event)
 	mapCollision();
 	updatePlayerAttackZone();
 	control(event);
-	//enemyCollision();
 	fall();
 	playerAnimator();
-	isCollided();
+	isCoinsCollided();
 	dx = 0;
 }
 
-void Player::eventUpdate(Event& event)
-{
-	/*
-	if (event.type == Event::KeyReleased)
-	{
-		if (event.key.code == Keyboard::Space)
-		{
-			spacePressed = false;
-		}
-	}*/
-}
+void Player::eventUpdate(Event& event) {}
 
-void Player::isCollided()
+void Player::isCoinsCollided()
 {
 	vector<Tile> map = Map::getMap();
 
@@ -193,7 +146,6 @@ void Player::isCollided()
 	{
 		if (hitBox.intersects(map[i].getHitBox()) && map[i].getCurrentType() == COIN)
 		{
-
 			coins++;
 			Map::getMap().erase(Map::getMap().begin() + i);
 		}
@@ -209,58 +161,3 @@ int Player::getCoins()
 {
 	return coins;
 }
-
-/*
-void Player::playerState()
-{
-	switch (this->currentState)
-	{
-	case State::STAND:
-		ifStand();
-		break;
-	case State::MOVE:
-		ifMove();
-		break;
-	case State::JUMP:
-		ifJump();
-		break;
-	case State::ATTACK:
-		ifAttack();
-		break;
-	case State::CAST_SPELL:
-		ifCastSpell();
-		break;
-	case State::UP_LADDER:
-		ifUpLadder();
-		break;
-	case State::DOWN_LADDER:
-		ifDownLadder();
-		break;
-	case State::DEATH:
-		break;
-	default:
-		break;
-	}
-}
-
-void ifStand()
-{
-}
-
-void ifMove()
-{}
-
-void ifJump()
-{}
-
-void ifAttack()
-{}
-
-void ifCastSpell()
-{}
-
-void ifUpLadder()
-{}
-
-void ifDownLadder()
-{}*/

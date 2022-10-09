@@ -2,7 +2,6 @@
 
 void Slime::control(Event& event)
 {
-	//currentState = STAND;
 	newState = STAND;
 	float Distance = distance(getCentrePosition(), player->getCentrePosition());
 	if (Distance < 400 && Distance > 10)
@@ -11,13 +10,11 @@ void Slime::control(Event& event)
 		{
 			if (!isLeftSideCollide)
 			{
-				//cout << distance(sprite.getPosition(), player->getPosition());
 				isRightSideCollide = false;
 				lookLeft = true;
 				dx = -0.05f;
 				sprite.move(dx * deltaTime, 0);
 				newState = MOVE;
-				//if (onGround) newState = MOVE;
 			}
 		}
 		else
@@ -53,7 +50,6 @@ void Slime::slimeAnimator()
 		Animator::animation(newState, currentState, this->sprite, !lookLeft, 0, 4, 8, currentFrame);
 		break;
 	case State::ATTACK:
-		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
 		Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
 		break;
 	case State::DEATH:

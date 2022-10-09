@@ -28,7 +28,6 @@ protected:
 	Entity(const Objects& obj, const IntRect& rect, const Vector2f& pos);
 	void fall();
 	void mapCollision();
-	//bool isCollide(FloatRect rect1, FloatRect rect2);
 public:
 	int gerStrength();
 	int getHP();

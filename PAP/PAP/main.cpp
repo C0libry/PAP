@@ -48,10 +48,6 @@ void clickWithCooldown(Event& event, int& count, bool& KeyPressed, Int64& allTim
 int main()
 {
 	RenderWindow window(sf::VideoMode(960, 540), "Platformer");
-	//RenderWindow window(sf::VideoMode(960, 540), "Platformer", Style::Fullscreen);
-	//window.setMouseCursorVisible(false);
-	//Level level;
-	//level.LoadFromFile("map.tmx");
 	Int64 frame_duration;
 	Int64 time_to_sleep;
 	float want_fps = 60.f;
@@ -60,10 +56,6 @@ int main()
 	Interface::mainMenu(window);
 	while (window.isOpen())
 	{
-		//Base::setDeltaTime(deltaClock.getElapsedTime().asMicroseconds() / 1000.f);
-		//cout << "DeltaTime = " << Base::getDeltaTime() << endl;
-		//deltaClock.restart();
-		//Base::setDeltaTime(deltaClock.restart().asMicroseconds() / 1000.f);
 		Event event;
 		while (window.pollEvent(event))
 		{
@@ -72,7 +64,6 @@ int main()
 			if (Keyboard::isKeyPressed(Keyboard::Escape))
 				Interface::paus(window);
 			GameUpdater::getInstance().eventUpdate(event);
-			//clickWithCooldown(event, count, KeyPressed, allTime, (3 * 1000 * 1000));
 		}
 
 		if (!GameUpdater::getInstance().update(event))
@@ -83,7 +74,6 @@ int main()
 
 		frame_duration = deltaClock.restart().asMicroseconds();
 		time_to_sleep = Int64(1000 * 1000.f / want_fps) - frame_duration;
-		//cout << 1/((frame_duration + time_to_sleep)/ (1000 * 1000.f)) << endl;
 		if (time_to_sleep > 0)
 			sleep(microseconds(time_to_sleep));
 	}

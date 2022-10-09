@@ -11,9 +11,6 @@
 class GameUpdater
 {
 private:
-	//virtual ~GameUpdater() = 0;
-	//Base * hero;
-	//Base* slime;
 	static Int64 gameTime;
 	GameUpdater();
 	GameUpdater(const GameUpdater&) = delete;

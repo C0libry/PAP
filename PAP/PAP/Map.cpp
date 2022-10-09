@@ -20,12 +20,6 @@ list<vector<string>> Map::loadFile()
 	string decor = temp + "_decor.csv";
 	string background = temp + "_background.csv";
 
-
-	//ifstream f("resources/map/map.txt");
-	//ifstream f("resources/map/rooms/TestRoom.txt");
-	//ifstream f("resources/map/rooms/test lvl_���� ������ 1.csv");
-	//ifstream f("resources/map/rooms/room 2/lvl 2_physics.csv");
-
 	list<vector<string>> lvl;
 	vector<string> str;
 	string s;
@@ -70,9 +64,6 @@ list<vector<string>> Map::loadFile()
 	str.clear();
 	s.clear();
 
-	//list<vector<string>>::iterator it = lvl.begin();
-
-	//return *it;
 	return lvl;
 }
 
@@ -86,8 +77,7 @@ void Map::mapCreature(list<vector<string>> lvl)
 	vector<string> str = *it;
 
 	vector<int> intmap;
-	//vector<string> s;
-	//cout << str[str.size()1][str[1].size()-1] << 's';
+
 	for (int roomLine = 0; roomLine < roomsInRow; roomLine++)
 	{
 		for (int roomRow = 0; roomRow < roomsInLine; roomRow++)
@@ -102,18 +92,6 @@ void Map::mapCreature(list<vector<string>> lvl)
 			levelCreature(*it, intmap, roomRow, roomLine, TileType::COIN);
 		}
 	}
-
-	/*
-	for (int line = 0; line < str.size(); line++)
-	{
-		for (int row = 0; row < str[line].size(); row++)
-		{
-			if (str[line][row] == '1')
-			{
-				map.push_back(Tile(BOX, IntRect(0, 0, 16, 16), Vector2f(tileSize * row / 2, tileSize * line)));
-			}
-		}
-	}*/
 }
 
 void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roomRow, const int& roomLine, const TileType tileType)
@@ -130,8 +108,6 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 		row = 0;
 		for (int j = 0; j < str[line].size(); j++)
 		{
-			//row = j;
-			//cout << str[i][j];
 			if (str[line][j] == ',' || j + 1 == str[line].size())
 			{
 				if (j + 1 == str[line].size())
@@ -139,9 +115,6 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 					temp += str[line][j];
 				}
 				intmap.push_back(stoi(temp));
-				//line += roomLine * roomSize;
-				//row += roomRow * roomSize;
-				//map.push_back(Tile(ASSETS, IntRect(0, 0, 16, 16), Vector2f(tileSize * row / 2, tileSize * line)));
 				if (intmap[intmap.size() - 1] != -1)
 				{
 					tileRow = intmap[intmap.size() - 1];
@@ -167,14 +140,8 @@ void Map::levelCreature(vector<string>& str, vector<int>& intmap, const int& roo
 
 void Map::load()
 {
-	//textureList[i].loadFromFile(HERO_NAME, IntRect(X, Y, ������, ������));
-	//textureList[0].loadFromFile(HERO_NAME);
-	//textureList[1].loadFromFile(TILE_BOX);
-
-	//string str;
 	Sprite& getSprite();
 	list<vector<string>> lvl;
-	//list<vector<string>> lvl;
 	lvl = Map::loadFile();
 	Map::mapCreature(lvl);
 }
@@ -184,16 +151,6 @@ void Map::render(RenderWindow& window)
 	for (int i = 0; i < map.size(); i++)
 	{
 		map[i].render(window);
-		/*
-		if (map[i].getCurrentType() == BACKGROUND)
-			map[i].render(window);
-		else
-			if (map[i].getCurrentType() == DECOR)
-				map[i].render(window);
-			else
-				if (map[i].getCurrentType() == SOLID)
-					map[i].render(window);
-		*/
 	}
 }
 

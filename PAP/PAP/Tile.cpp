@@ -11,7 +11,6 @@ Tile::Tile(const Objects& obj, const TileType& type, const int Number, const Int
 
 void Tile::render(RenderWindow& window)
 {
-
 	window.draw(this->sprite);
 }
 

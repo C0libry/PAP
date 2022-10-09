@@ -2,14 +2,6 @@
 
 void Interface::mainMenu(RenderWindow& window)
 {
-	/*
-	Font font;
-	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");
-	Text text("Text", font, 20);
-	text.setFillColor(Color::Black);
-	text.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	sleep(seconds(10));
-	*/
 	bool game = false;
 	Font font;
 	font.loadFromFile("resources/font/PressStart2P-Regular.ttf");

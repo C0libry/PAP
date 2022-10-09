@@ -7,7 +7,6 @@ Sprite walk;
 
 void HellHound::control(Event& event)
 {
-	//currentState = STAND;
 	newState = STAND;
 	float Distance = distance(getCentrePosition(), player->getCentrePosition());
 	if (Distance < 400 && Distance > 10)
@@ -16,13 +15,11 @@ void HellHound::control(Event& event)
 		{
 			if (!isLeftSideCollide)
 			{
-				//cout << distance(sprite.getPosition(), player->getPosition());
 				isRightSideCollide = false;
 				lookLeft = true;
 				dx = -0.07f;
 				sprite.move(dx * deltaTime, 0);
 				newState = MOVE;
-				//if (onGround) newState = MOVE;
 			}
 		}
 		else
@@ -41,7 +38,6 @@ void HellHound::control(Event& event)
 	{
 		newState = ATTACK;
 		isAttack = true;
-		//sprite.setPosition(run.getPosition());
 	}
 	if (hp <= 0)
 		newState = DEATH;
@@ -62,7 +58,6 @@ void HellHound::hellHoundAnimator()
 		Animator::animation(newState, currentState, jump, !lookLeft, 0, 0, 5, currentFrame);
 		break;
 	case State::ATTACK:
-		//if (!isEndOfAnimation) isEndOfAnimation = Animator::animation(newState, currentState, this->sprite, !lookLeft, 1, 1, 6, currentFrame);
 		Animator::animation(newState, currentState, run, !lookLeft, 0, 0, 4, currentFrame);
 		break;
 	case State::DEATH:

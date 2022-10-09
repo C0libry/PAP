@@ -21,7 +21,6 @@ enum  TileType
 class Tile : public Base
 {
 protected:
-	//bool solid;
 	bool activated;
 	TileType currentType;
 	int number;
